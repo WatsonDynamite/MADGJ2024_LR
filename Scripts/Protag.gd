@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var speed = 4
 
 
 func get_input():
@@ -13,6 +13,7 @@ func get_input():
 	# Apply movement
 	velocity.x = movement.x * speed
 	velocity.z = movement.z * speed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
