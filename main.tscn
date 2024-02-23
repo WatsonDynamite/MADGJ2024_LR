@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://n381132xna3c"]
+[gd_scene load_steps=4 format=3 uid="uid://48fpcgwwhyj5"]
 
 [ext_resource type="PackedScene" uid="uid://d3dco43dwcs2d" path="res://Assets/protag.gltf" id="1_6te4k"]
+[ext_resource type="Script" path="res://Scripts/Protag.gd" id="2_cacqo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0m7ab"]
+size = Vector3(0.476171, 0.791138, 0.490112)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="protag" parent="." instance=ExtResource("1_6te4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.214934, 0, -3.36316)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_cacqo")
+
+[node name="protag_model" parent="CharacterBody3D" instance=ExtResource("1_6te4k")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0574546, 0.398865, 0.244133)
+shape = SubResource("BoxShape3D_0m7ab")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.948008, 0.318248, 0, -0.318248, 0.948008, 0, 2.95101, 5.92068)
