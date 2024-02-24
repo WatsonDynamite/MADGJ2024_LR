@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6m2g1tdt3gu3"]
+[gd_scene load_steps=5 format=3 uid="uid://d4mklkl0fv7i1"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_4xxfd"]
 [ext_resource type="PackedScene" uid="uid://bcr8ovsmvj1mt" path="res://Assets/slime.gltf" id="1_sxuul"]
+[ext_resource type="PackedScene" uid="uid://c4iu2sm02efmn" path="res://Prefabs/Particles/slime_particle.tscn" id="2_fa25x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pful"]
 size = Vector3(0.502319, 0.584808, 0.517029)
 
 [node name="Slime" type="Area3D"]
 script = ExtResource("1_4xxfd")
+health = 3
+movespeed = 2
+death_particle = ExtResource("2_fa25x")
 
 [node name="slime" parent="." instance=ExtResource("1_sxuul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295424, 0, 0.259766)
@@ -15,3 +19,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295424, 0, 0.259766)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000183105, 0.296188, -0.0359802)
 shape = SubResource("BoxShape3D_2pful")
+
+[node name="Timer" type="Timer" parent="."]

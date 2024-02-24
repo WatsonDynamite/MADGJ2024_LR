@@ -19,9 +19,9 @@ func setDirection(vector):
 	
 func _on_area_entered(area):
 	_disable()
-	area.queue_free()
-	pass # Replace with function body.
-
+	if(area.has_method("_on_receive_damage")):
+		area._on_receive_damage(1);
+	pass; # Replace with function body.
 
 func _on_body_entered(body):
 	if(body.get_parent().has_method("_decress_curr_size")):
@@ -33,6 +33,6 @@ func _on_body_entered(body):
 	pass # Replace with function body.
 
 func _disable():
-	hide()
 	set_process_mode(PROCESS_MODE_DISABLED)
+	hide()
 	position.y = 10

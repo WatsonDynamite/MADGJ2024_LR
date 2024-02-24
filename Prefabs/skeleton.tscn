@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcfv64c1kfohi"]
+[gd_scene load_steps=5 format=3 uid="uid://dww25n7ix4y4o"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_clk6m"]
 [ext_resource type="PackedScene" uid="uid://c4t0skghg3ynt" path="res://Assets/adema.gltf" id="1_x3811"]
+[ext_resource type="PackedScene" uid="uid://d1ddpjnvk1du4" path="res://Prefabs/Particles/adema_particle.tscn" id="2_udgpj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pqg2r"]
 size = Vector3(0.436584, 0.844543, 0.424744)
@@ -9,6 +10,8 @@ size = Vector3(0.436584, 0.844543, 0.424744)
 [node name="Skeleton" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00624704, 0.622372, 0.0418003)
 script = ExtResource("1_clk6m")
+movespeed = 3
+death_particle = ExtResource("2_udgpj")
 
 [node name="adema" parent="." instance=ExtResource("1_x3811")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.783586, 0)

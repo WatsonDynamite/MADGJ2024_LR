@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1ddpjnvk1du4"]
+
+[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="1_fiqrf"]
+
+[sub_resource type="Gradient" id="Gradient_jr4u0"]
+offsets = PackedFloat32Array(0, 0.52741, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jic7i"]
+gradient = SubResource("Gradient_jr4u0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1pljn"]
+angle_min = -45.0
+angle_max = 45.0
+direction = Vector3(0, 1, 0)
+spread = 32.917
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -3, 0)
+color_ramp = SubResource("GradientTexture1D_jic7i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anomm"]
+albedo_color = Color(0.286275, 0.286275, 0.286275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ehls"]
+material = SubResource("StandardMaterial3D_anomm")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+emitting = false
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.8
+explosiveness = 0.93
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1pljn")
+draw_pass_1 = SubResource("BoxMesh_4ehls")
+script = ExtResource("1_fiqrf")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

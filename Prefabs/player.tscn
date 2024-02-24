@@ -66,7 +66,7 @@ font = ExtResource("6_50080")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964795, 0)
 visible = false
 billboard = 1
-text = "Out of ammo!"
+text = "Out of ammo! (Press R)"
 font = ExtResource("6_50080")
 
 [node name="ReloadTimer" type="Timer" parent="."]

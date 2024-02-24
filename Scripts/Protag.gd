@@ -27,6 +27,8 @@ var gunDirection: Node3D
 var level: Node3D
 var ammo: Array
 
+var is_dead = false;
+
 var ammoValue = MAX_AMMO
 var currentBullet = 0
 var health = 3
@@ -84,27 +86,27 @@ func _physics_process(delta):
 	pass
 	
 func takeDamage(value):
-	health -= value
-	hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT));
+	if(!is_dead):
+		health -= value
+		hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT));
 	
-	var particle = minusHPParticle.instantiate();
-	particle.position = position;
-	get_parent().add_child(particle);
+		var particle = minusHPParticle.instantiate();
+		particle.position = position;
+		get_parent().add_child(particle);
 		
-	if(health <= 0):
-		#dead!
-		_on_death()
-		
-	print(health);
+		if(health <= 0):
+			#dead!
+			_on_death()
 	pass;
 	
 func _on_death():
+	is_dead = true;
 	model.visible = false;
 	var particle = bloodParticle.instantiate();
 	var deathScr = deathScreen.instantiate();
 	particle.position = position;
 	get_parent().add_child(particle);
-	get_parent().add_child(deathScr);
+	get_parent().find_child("Level").add_child(deathScr);
 	
 func _on_reload_timer_timeout():
 	outOfAmmoLabel.visible = false;

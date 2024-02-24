@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://drqht7eb1jr1j"]
+[gd_scene load_steps=5 format=3 uid="uid://drqht7eb1jr1j"]
 
 [ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="1_ge1k6"]
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_vyihc"]
+[ext_resource type="PackedScene" uid="uid://bfk8wn7odknm8" path="res://Prefabs/Particles/zombie_particle.tscn" id="2_owuga"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h5560"]
 size = Vector3(0.479736, 0.730286, 0.313049)
@@ -9,6 +10,8 @@ size = Vector3(0.479736, 0.730286, 0.313049)
 [node name="Zombie" type="Area3D"]
 collision_mask = 2
 script = ExtResource("1_vyihc")
+movespeed = 2
+death_particle = ExtResource("2_owuga")
 
 [node name="zombie" parent="." instance=ExtResource("1_ge1k6")]
 

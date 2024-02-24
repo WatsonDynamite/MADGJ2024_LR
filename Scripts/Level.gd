@@ -11,18 +11,20 @@ var slime = preload("res://Prefabs/slime.tscn")
 var wallParticle = preload("res://Prefabs/Particles/wall_particle.tscn")
 
 var mobs: Array
-var spawn_timer: Timer
+var spawn_freq_mod: int = 0.5;
+var spawn_freq_time: int = 2;
+
+@onready var spawn_timer: Timer = $Timer;
 enum Tiles { FLOOR, WALL };
 
 const UNIVERSE_SIZE = 65;
 const INITIAL_WALL_SIZE = 17;
 
 var cur_wall_size = INITIAL_WALL_SIZE;
-var wall_health = 3;	
+var wall_health = 3;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(crosshair, Input.CURSOR_ARROW, Vector2(16.5, 16.5));
-	
 	mobs.append(zombie)
 	mobs.append(skeleton)
 	mobs.append(slime)
@@ -33,6 +35,7 @@ func _ready():
 			gridMap.set_cell_item(Vector3i(i - offset, 0, j - offset), Tiles.FLOOR);
 	_set_wall_to(INITIAL_WALL_SIZE);
 	
+	_on_new_wave(1);
 	pass # Replace with function body.
 
 
@@ -69,7 +72,6 @@ func _decress_curr_size(value: int):
 		cur_wall_size -= value;
 		wall_health = 3
 		_set_wall_to(cur_wall_size);
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,18 +79,23 @@ func _process(delta):
 	pass
 
 func _spawner():
+	var offset = cur_wall_size / 2;
 	var random_number = randi() % 3
 	var mob = mobs[random_number].instantiate()
-	var randomX = randi() % cur_wall_size + (cur_wall_size/ 2)
+	var randomX = randi() % (offset + 3) + offset
 	if randi() % 2 == 0:
 		randomX *= -1
-	var randomZ = randi() % cur_wall_size + (cur_wall_size/ 2)
+	var randomZ = randi() % (offset + 3) + offset
 	if randi() % 2 == 0:
 		randomZ *= -1
 	mob.position = Vector3(randomX,0.5,randomZ)
+	print("spawned a guy")
 	add_child(mob)
-
 
 func _on_timer_timeout():
 	_spawner()
 	pass # Replace with function body.
+
+func _on_new_wave(wave: int):
+	spawn_timer.start(spawn_freq_time - (wave * spawn_freq_mod));
+	

@@ -55,7 +55,7 @@ theme_override_fonts/font = ExtResource("1_cicyq")
 theme_override_font_sizes/font_size = 60
 text = "RETRY"
 
-[node name="Label2" type="Label" parent="Panel/ui_elements"]
+[node name="ScoreLabel" type="Label" parent="Panel/ui_elements"]
 layout_mode = 0
 offset_left = 797.0
 offset_top = 481.0
