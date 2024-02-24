@@ -2,6 +2,8 @@ extends Area3D
 var speed = 3.5
 var direction = Vector3.ZERO
 
+@onready var particles = preload("res://Prefabs/warning_particle.tscn");
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_mode(PROCESS_MODE_DISABLED)
@@ -23,9 +25,12 @@ func _on_area_entered(area):
 
 
 func _on_body_entered(body):
-	print("parede")
-	body.get_parent()._decress_curr_size(2)
-	_disable()
+	if(body.get_parent().has_method("_decress_curr_size")):
+		body.get_parent()._decress_curr_size(2)
+		var particle = particles.instantiate();
+		particle.position = Vector3(position.x, position.y + 1, position.z);
+		body.add_child(particle);
+		_disable()
 	pass # Replace with function body.
 
 func _disable():

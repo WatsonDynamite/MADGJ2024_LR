@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2g4hisul2jer"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
-[ext_resource type="MeshLibrary" uid="uid://wajnudcfcx6f" path="res://Assets/tileset.tres" id="1_red2q"]
+[ext_resource type="MeshLibrary" uid="uid://jg4uxe7aiqtl" path="res://Assets/tileset2.tres" id="2_ta0uy"]
 [ext_resource type="Texture2D" uid="uid://ccstm6m6i0och" path="res://Assets/warning_bg.png" id="3_utiut"]
 [ext_resource type="Texture2D" uid="uid://whnhkw6fnmlj" path="res://Assets/warning.png" id="4_02pfd"]
 
@@ -20,44 +20,45 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_im5e3"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 6.85
 dof_blur_far_transition = 1.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 5.0
 dof_blur_amount = 0.03
-[gd_scene load_steps=3 format=3 uid="uid://wus2lns7fucd"]
-
-[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
-[ext_resource type="MeshLibrary" uid="uid://jg4uxe7aiqtl" path="res://Assets/tileset2.tres" id="2_ta0uy"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
+metadata/_edit_group_ = true
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_ta0uy")
 cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65535, 65534, 1, 0, 65534, 1, 1, 65534, 1, 2, 65535, 1441793)
+}
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Node2D" type="Node2D" parent="Container"]
-position = Vector2(10.44, -64.255)
-scale = Vector2(1.5, 1.5)
-
-[node name="WarningLevel" type="TextureProgressBar" parent="Container/Node2D"]
-anchors_preset = -1
-anchor_right = 0.024
-anchor_bottom = 0.05
-offset_left = 1.04
-offset_top = 2.17
-offset_right = 34.04
-offset_bottom = 35.17
+[node name="WarningLevel" type="TextureProgressBar" parent="Container"]
+layout_mode = 2
+offset_left = 21.0
+offset_top = 25.0
+offset_right = 54.0
+offset_bottom = 58.0
+scale = Vector2(2, 2)
 max_value = 3.0
 fill_mode = 3
+stretch_margin_left = 20
+stretch_margin_top = 20
 texture_under = ExtResource("3_utiut")
 texture_progress = ExtResource("4_02pfd")
 
@@ -68,6 +69,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rptky")
 camera_attributes = SubResource("CameraAttributesPractical_im5e3")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true

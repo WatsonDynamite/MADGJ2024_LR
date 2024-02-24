@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var gridMap: GridMap = $GridMap;
+@onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
 var zombie = preload("res://Prefabs/Zombie.tscn")
 var spawn_timer: Timer
 enum Tiles { FLOOR, WALL };
@@ -55,6 +56,7 @@ func _decress_curr_size(value: int):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	warningLevel.value = 3-wall_health;
 	pass
 	
 	
@@ -62,7 +64,6 @@ func _spawner():
 	var teste =zombie.instantiate()
 	teste.position = Vector3(0,0,cur_wall_size)
 	add_child(teste)
-
 
 
 func _on_timer_timeout():
