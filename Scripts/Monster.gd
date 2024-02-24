@@ -15,10 +15,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if collided && attacking:
-		player.takeDamage(damage)
-		attacking = false
-		attackTimer.start()
 	pass
 
 func _physics_process(delta):
@@ -30,15 +26,9 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	collided = true
-	attacking = true
 	pass # Replace with function body.
 
 
 func _on_body_exited(body):
 	collided = false
-	pass # Replace with function body.
-
-func _on_timer_timeout():
-	attacking = true
-	attackTimer.stop()
 	pass # Replace with function body.

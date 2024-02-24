@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://48fpcgwwhyj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2g4hisul2jer" path="res://Prefabs/Level.tscn" id="1_5v0i7"]
-[ext_resource type="PackedScene" uid="uid://bs7h7iumeflci" path="res://Prefabs/player.tscn" id="2_3rn8t"]
+[ext_resource type="PackedScene" uid="uid://tkyb0o8pomyh" path="res://Prefabs/player.tscn" id="2_3rn8t"]
 [ext_resource type="PackedScene" uid="uid://drqht7eb1jr1j" path="res://Prefabs/Zombie.tscn" id="6_frexo"]
 [ext_resource type="PackedScene" uid="uid://b1siuuxneokkc" path="res://Prefabs/bullet.tscn" id="6_lcnlk"]
 
@@ -57,6 +57,21 @@ visible = false
 visible = false
 
 [node name="Bullet15" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet16" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet17" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet18" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet19" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet20" parent="Bullets" instance=ExtResource("6_lcnlk")]
 visible = false
 
 [node name="Zombie" parent="." instance=ExtResource("6_frexo")]
