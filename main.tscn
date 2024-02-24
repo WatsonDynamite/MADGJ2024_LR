@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://48fpcgwwhyj5"]
+[gd_scene load_steps=12 format=3 uid="uid://48fpcgwwhyj5"]
 
 [ext_resource type="PackedScene" uid="uid://d3dco43dwcs2d" path="res://Assets/protag.gltf" id="1_6te4k"]
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="2_07mk0"]
 [ext_resource type="Script" path="res://Scripts/Protag.gd" id="2_cacqo"]
 [ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="3_vid73"]
+[ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="5_lom6g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3mg2j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,10 +20,13 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0m7ab"]
-size = Vector3(0.476171, 0.791138, 0.490112)
+size = Vector3(0.476171, 0.791138, 0.267639)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rd641"]
 size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrn0k"]
+size = Vector3(0.479736, 0.776611, 0.313049)
 
 [node name="Node3D" type="Node3D"]
 
@@ -46,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051378, 0.331666, 0.564808
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0574546, 0.398865, 0.244133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0574546, 0.398865, 0.132896)
 shape = SubResource("BoxShape3D_0m7ab")
 
 [node name="CameraPivct" type="Node3D" parent="CharacterBody3D"]
@@ -57,3 +61,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_rd641")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.05343)
+
+[node name="zombie" parent="Area3D" instance=ExtResource("5_lom6g")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.349731, 0.132718)
+shape = SubResource("BoxShape3D_xrn0k")

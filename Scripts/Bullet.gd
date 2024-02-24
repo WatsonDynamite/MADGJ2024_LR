@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Area3D
 var speed = 3.5
 var direction = Vector3.ZERO
 
@@ -13,3 +13,9 @@ func _physics_process(delta):
 		
 func setDirection(vector):
 	transform = vector
+	
+func _on_area_entered(area):
+	print("monster")
+	hide()
+	area.queue_free()
+	pass # Replace with function body.
