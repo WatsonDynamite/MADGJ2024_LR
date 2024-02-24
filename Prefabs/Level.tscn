@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2g4hisul2jer"]
+[gd_scene load_steps=5 format=3 uid="uid://b2g4hisul2jer"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
 [ext_resource type="MeshLibrary" uid="uid://wajnudcfcx6f" path="res://Assets/tileset.tres" id="1_red2q"]
+[ext_resource type="Texture2D" uid="uid://ccstm6m6i0och" path="res://Assets/warning_bg.png" id="3_utiut"]
+[ext_resource type="Texture2D" uid="uid://whnhkw6fnmlj" path="res://Assets/warning.png" id="4_02pfd"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
@@ -9,6 +11,27 @@ script = ExtResource("1_aj84e")
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_red2q")
 cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(65534, 1, 524289, 0, 1, 524289, 1, 1, 524289, 2, 1, 524289, 65535, 1, 524289)
-}
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Node2D" type="Node2D" parent="Container"]
+position = Vector2(10.44, -64.255)
+scale = Vector2(1.5, 1.5)
+
+[node name="WarningLevel" type="TextureProgressBar" parent="Container/Node2D"]
+anchors_preset = -1
+anchor_right = 0.024
+anchor_bottom = 0.05
+offset_left = 1.04
+offset_top = 2.17
+offset_right = 34.04
+offset_bottom = 35.17
+max_value = 3.0
+fill_mode = 3
+texture_under = ExtResource("3_utiut")
+texture_progress = ExtResource("4_02pfd")
