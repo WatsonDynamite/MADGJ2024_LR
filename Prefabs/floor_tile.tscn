@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwb73fmnn75r2"]
+
+[ext_resource type="Texture2D" uid="uid://bhx7hebynlhgu" path="res://Assets/floor_tex.png" id="1_jxbpb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rmev"]
+albedo_texture = ExtResource("1_jxbpb")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ck6p2"]
+material = SubResource("StandardMaterial3D_1rmev")
+size = Vector2(1, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7a082"]
+data = PackedVector3Array(0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5)
+
+[node name="FloorTile" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_ck6p2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7a082")

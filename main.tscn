@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://48fpcgwwhyj5"]
 
-[ext_resource type="PackedScene" uid="uid://d3dco43dwcs2d" path="res://Assets/protag.gltf" id="1_6te4k"]
+
+[ext_resource type="PackedScene" uid="uid://b2g4hisul2jer" path="res://Prefabs/Level.tscn" id="1_5v0i7"]
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="2_07mk0"]
 [ext_resource type="Script" path="res://Scripts/Protag.gd" id="2_cacqo"]
 [ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="3_vid73"]
@@ -23,15 +24,16 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_0m7ab"]
 size = Vector3(0.476171, 0.791138, 0.267639)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rd641"]
-size = Vector2(10, 10)
-
 [node name="Node3D" type="Node3D"]
+
+[node name="Level" parent="." instance=ExtResource("1_5v0i7")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5pa28")
 
+
 [node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47369, 0)
 script = ExtResource("2_cacqo")
 
 [node name="Model" type="Node3D" parent="Player"]
@@ -41,6 +43,7 @@ script = ExtResource("2_cacqo")
 [node name="protag_head" parent="Player/Model" instance=ExtResource("3_vid73")]
 transform = Transform3D(1, 0, 0, 0, 0.937178, 0.34885, 0, -0.34885, 0.937178, 0, -0.0215266, 0.157584)
 
+
 [node name="GunDirection" type="Node3D" parent="Player/Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051378, 0.331666, 0.564808)
 
@@ -49,6 +52,7 @@ visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0574546, 0.398865, 0.132896)
+
 shape = SubResource("BoxShape3D_0m7ab")
 
 [node name="CameraPivct" type="Node3D" parent="Player"]
