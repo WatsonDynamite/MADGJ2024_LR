@@ -1,9 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2g4hisul2jer"]
+[gd_scene load_steps=9 format=3 uid="uid://b2g4hisul2jer"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
 [ext_resource type="MeshLibrary" uid="uid://wajnudcfcx6f" path="res://Assets/tileset.tres" id="1_red2q"]
 [ext_resource type="Texture2D" uid="uid://ccstm6m6i0och" path="res://Assets/warning_bg.png" id="3_utiut"]
 [ext_resource type="Texture2D" uid="uid://whnhkw6fnmlj" path="res://Assets/warning.png" id="4_02pfd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uxqr8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_unrwi"]
+sky_material = SubResource("ProceduralSkyMaterial_uxqr8")
+
+[sub_resource type="Environment" id="Environment_rptky"]
+background_mode = 2
+sky = SubResource("Sky_unrwi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_im5e3"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 6.85
+dof_blur_far_transition = 1.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 5.0
+dof_blur_amount = 0.03
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
@@ -35,3 +56,11 @@ max_value = 3.0
 fill_mode = 3
 texture_under = ExtResource("3_utiut")
 texture_progress = ExtResource("4_02pfd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.350028, 0.679667, 0.644619, 0, -0.688152, 0.725567, 0.936739, -0.253968, -0.240872, 0, 106.021, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rptky")
+camera_attributes = SubResource("CameraAttributesPractical_im5e3")
