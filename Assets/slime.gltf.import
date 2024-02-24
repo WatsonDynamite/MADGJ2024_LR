@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4t0skghg3ynt"
-path="res://.godot/imported/adema.gltf-f80f386d17382aef5996157c491fce77.scn"
+uid="uid://bcr8ovsmvj1mt"
+path="res://.godot/imported/slime.gltf-dd5b1779ad8c258afafe76f46cb1cbe5.scn"
 
 [deps]
 
-source_file="res://Assets/adema.gltf"
-dest_files=["res://.godot/imported/adema.gltf-f80f386d17382aef5996157c491fce77.scn"]
+source_file="res://Assets/slime.gltf"
+dest_files=["res://.godot/imported/slime.gltf-dd5b1779ad8c258afafe76f46cb1cbe5.scn"]
 
 [params]
 
