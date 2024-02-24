@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c263xyufqyddn"
+path="res://.godot/imported/spike_wall.obj-f85b8ea200f5e56533da7fa33a4beb5a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spike_wall.obj-f85b8ea200f5e56533da7fa33a4beb5a.mesh"]
+
+source_file="res://Assets/spike_wall.obj"
+dest_files=["res://.godot/imported/spike_wall.obj-f85b8ea200f5e56533da7fa33a4beb5a.mesh", "res://.godot/imported/spike_wall.obj-f85b8ea200f5e56533da7fa33a4beb5a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(0.11, 0.11, 0.11)
+offset_mesh=Vector3(0.052, 0, -0.5)
+optimize_mesh=true
+force_disable_mesh_compression=false
