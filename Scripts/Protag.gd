@@ -69,6 +69,7 @@ func get_input(delta):
 		if(ammoValue == 0):
 			outOfAmmoLabel.visible = true;
 	if Input.is_action_just_pressed("reload"):
+		ammoValue = 0
 		outOfAmmoLabel.visible = false;
 		reloadingLabel.visible = true;
 		reloadTimer.start();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drqht7eb1jr1j"]
+[gd_scene load_steps=11 format=3 uid="uid://drqht7eb1jr1j"]
 
 [ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="1_ge1k6"]
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_vyihc"]
@@ -60,7 +60,7 @@ transitions = ["Start", "zombie", SubResource("AnimationNodeStateMachineTransiti
 [node name="Zombie" type="Area3D"]
 collision_mask = 2
 script = ExtResource("1_vyihc")
-movespeed = 2
+movespeed = 3
 death_particle = ExtResource("2_owuga")
 
 [node name="zombie" parent="." instance=ExtResource("1_ge1k6")]

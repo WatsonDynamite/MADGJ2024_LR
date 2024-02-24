@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://m62ivolv7yqb"]
+
+[ext_resource type="Script" path="res://Scripts/fireball.gd" id="1_3hl2r"]
+[ext_resource type="Texture2D" uid="uid://dvcojlrxpvtuq" path="res://Assets/fireball.png" id="1_30u5s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33yma"]
+atlas = ExtResource("1_30u5s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r243a"]
+atlas = ExtResource("1_30u5s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h58n1"]
+atlas = ExtResource("1_30u5s")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdnax"]
+atlas = ExtResource("1_30u5s")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7t7l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33yma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r243a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h58n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdnax")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xov84"]
+size = Vector3(0.328308, 0.319458, 0.316528)
+
+[node name="Fireball" type="Area3D"]
+script = ExtResource("1_3hl2r")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_7t7l5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0104728, -0.00299072, 0.0043335)
+shape = SubResource("BoxShape3D_xov84")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

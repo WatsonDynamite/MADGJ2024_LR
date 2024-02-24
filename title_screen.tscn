@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://ee4binfrmnh1"]
+[gd_scene load_steps=19 format=3 uid="uid://ee4binfrmnh1"]
 
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_l3rgn"]
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="1_ro1ea"]
 [ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="2_nmdyc"]
 [ext_resource type="PackedScene" uid="uid://c4t0skghg3ynt" path="res://Assets/adema.gltf" id="3_3vnaq"]
@@ -8,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bhx7hebynlhgu" path="res://Assets/floor_tex.png" id="6_y3nn4"]
 [ext_resource type="Texture2D" uid="uid://dpijle2anfyrx" path="res://Assets/claustromania.png" id="7_2x5ou"]
 [ext_resource type="Texture2D" uid="uid://0n07qf8nno5u" path="res://Assets/start.png" id="8_bkwq0"]
+[ext_resource type="PackedScene" uid="uid://cacbyf18ryw4c" path="res://Prefabs/spike_wall.tscn" id="10_ivr0w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxel2"]
 albedo_texture = ExtResource("6_y3nn4")
@@ -50,6 +52,7 @@ dof_blur_near_distance = 4.5
 dof_blur_amount = 0.07
 
 [node name="TitleScreen" type="Node3D"]
+script = ExtResource("1_l3rgn")
 
 [node name="Protag" type="Node3D" parent="."]
 transform = Transform3D(0.988263, 0.152762, 0, -0.152762, 0.988263, 0, 0, 0, 1, 0, 0, 0)
@@ -110,3 +113,55 @@ light_energy = 7.423
 light_indirect_energy = 0.775
 spot_range = 34.198
 spot_angle = 34.2
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="SpikeWall" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0753918, -3.11315)
+skeleton = NodePath("../..")
+
+[node name="SpikeWall2" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997129, 0.0753918, -3.11315)
+
+[node name="SpikeWall3" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.997193, 0.0753918, -3.11315)
+
+[node name="SpikeWall4" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9744, 0.0753918, -3.11315)
+
+[node name="SpikeWall5" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98922, 0.0753918, -3.11315)
+
+[node name="SpikeWall6" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92442, 0.0753918, -3.11315)
+skeleton = NodePath("../..")
+
+[node name="SpikeWall7" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92155, 0.0753918, -3.11315)
+
+[node name="SpikeWall8" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92723, 0.0753918, -3.11315)
+
+[node name="SpikeWall9" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95002, 0.0753918, -3.11315)
+
+[node name="SpikeWall10" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.91364, 0.0753918, -3.11315)
+
+[node name="SpikeWall11" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95023, 0.0753918, -3.11315)
+skeleton = NodePath("../..")
+
+[node name="SpikeWall12" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9531, 0.0753918, -3.11315)
+
+[node name="SpikeWall13" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94742, 0.0753918, -3.11315)
+
+[node name="SpikeWall14" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92463, 0.0753918, -3.11315)
+
+[node name="SpikeWall15" parent="Walls" instance=ExtResource("10_ivr0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96101, 0.0753918, -3.11315)
+
+[connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]

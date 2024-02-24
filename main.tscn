@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://48fpcgwwhyj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2g4hisul2jer" path="res://Prefabs/Level.tscn" id="1_5v0i7"]
-[ext_resource type="PackedScene" uid="uid://bs7h7iumeflci" path="res://Prefabs/player.tscn" id="2_3rn8t"]
+[ext_resource type="PackedScene" uid="uid://tkyb0o8pomyh" path="res://Prefabs/player.tscn" id="2_3rn8t"]
 [ext_resource type="PackedScene" uid="uid://b1siuuxneokkc" path="res://Prefabs/bullet.tscn" id="6_lcnlk"]
 
 [node name="Node3D" type="Node3D"]
@@ -72,12 +72,3 @@ visible = false
 
 [node name="Bullet20" parent="Bullets" instance=ExtResource("6_lcnlk")]
 visible = false
-
-[node name="Zombie" parent="." instance=ExtResource("6_frexo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.007)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13, 0)
-light_energy = 16.0
-shadow_enabled = true
-spot_range = 78.943
