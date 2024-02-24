@@ -59,7 +59,6 @@ func _process(delta):
 	warningLevel.value = 3-wall_health;
 	pass
 	
-	
 func _spawner():
 	var teste =zombie.instantiate()
 	teste.position = Vector3(0,0,cur_wall_size)
