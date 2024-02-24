@@ -3,6 +3,9 @@ extends Node3D
 @onready var gridMap: GridMap = $GridMap;
 @onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
 var zombie = preload("res://Prefabs/Zombie.tscn")
+var skeleton = preload("res://Prefabs/skeleton.tscn")
+var slime = preload("res://Prefabs/slime.tscn")
+var mobs: Array
 var spawn_timer: Timer
 enum Tiles { FLOOR, WALL };
 
@@ -13,6 +16,9 @@ var cur_wall_size = INITIAL_WALL_SIZE;
 var wall_health = 3;	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	mobs.append(zombie)
+	mobs.append(skeleton)
+	mobs.append(slime)
 	_spawner()
 	var offset = UNIVERSE_SIZE / 2;
 	for i in UNIVERSE_SIZE:
@@ -58,11 +64,18 @@ func _decress_curr_size(value: int):
 func _process(delta):
 	warningLevel.value = 3-wall_health;
 	pass
-	
+
 func _spawner():
-	var teste =zombie.instantiate()
-	teste.position = Vector3(0,0,cur_wall_size)
-	add_child(teste)
+	var random_number = randi() % 3
+	var mob = mobs[random_number].instantiate()
+	var randomX = randi() % cur_wall_size + (cur_wall_size/ 2)
+	if randi() % 2 == 0:
+		randomX *= -1
+	var randomZ = randi() % cur_wall_size + (cur_wall_size/ 2)
+	if randi() % 2 == 0:
+		randomZ *= -1
+	mob.position = Vector3(randomX,0.5,randomZ)
+	add_child(mob)
 
 
 func _on_timer_timeout():
