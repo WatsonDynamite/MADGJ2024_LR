@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4mklkl0fv7i1"]
+[gd_scene load_steps=10 format=3 uid="uid://b6m2g1tdt3gu3"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_4xxfd"]
 [ext_resource type="PackedScene" uid="uid://bcr8ovsmvj1mt" path="res://Assets/slime.gltf" id="1_sxuul"]
@@ -6,6 +6,56 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pful"]
 size = Vector3(0.502319, 0.584808, 0.517029)
+
+[sub_resource type="Animation" id="Animation_ajuk4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yijsm"]
+resource_name = "slime"
+length = 0.400003
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.730472, 1.16444, 1), Vector3(0.730472, 1.16444, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0ho3"]
+_data = {
+"RESET": SubResource("Animation_ajuk4"),
+"slime": SubResource("Animation_yijsm")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q6fc2"]
+animation = &"slime"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6w0d"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ktrir"]
+states/slime/node = SubResource("AnimationNodeAnimation_q6fc2")
+states/slime/position = Vector2(424, 76)
+transitions = ["Start", "slime", SubResource("AnimationNodeStateMachineTransition_p6w0d")]
 
 [node name="Slime" type="Area3D"]
 script = ExtResource("1_4xxfd")
@@ -20,4 +70,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295424, 0, 0.259766)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000183105, 0.296188, -0.0359802)
 shape = SubResource("BoxShape3D_2pful")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v0ho3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_ktrir")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v0ho3")
+}

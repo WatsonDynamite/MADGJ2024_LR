@@ -64,7 +64,6 @@ advance_mode = 2
 advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5f25"]
-xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"idle"
 
@@ -92,6 +91,7 @@ script = ExtResource("1_slckp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.332, 0.565)
 
 [node name="Body" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="protag_body" parent="Model/Body" instance=ExtResource("2_nsktf")]
 
@@ -121,7 +121,7 @@ shape = SubResource("BoxShape3D_0m7ab")
 transform = Transform3D(-1, -5.54899e-08, -6.75545e-08, 0, 0.772734, -0.634731, 8.74228e-08, -0.634731, -0.772734, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivct"]
-transform = Transform3D(1, 0, 0, 0, -0.0523359, 0.99863, 0, -0.99863, -0.0523359, 0, 6.819, -0.39)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.19395, 0)
 current = true
 
 [node name="Control" type="Control" parent="."]
@@ -155,7 +155,7 @@ font = ExtResource("6_50080")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964795, 0)
 visible = false
 billboard = 1
-text = "Out of ammo! (Press R)"
+text = "Out of ammo!"
 font = ExtResource("6_50080")
 
 [node name="ReloadTimer" type="Timer" parent="."]
