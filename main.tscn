@@ -61,3 +61,9 @@ visible = false
 
 [node name="Zombie" parent="." instance=ExtResource("6_frexo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.007)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13, 0)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 78.943

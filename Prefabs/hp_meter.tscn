@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://be4kmb5bfogrs"]
+
+[ext_resource type="Texture2D" uid="uid://c76wkpk37et3g" path="res://Assets/heart.png" id="1_4mi6d"]
+[ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="2_33ty8"]
+
+[node name="HpMeter" type="TextureRect"]
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 71.0
+offset_bottom = 62.0
+texture = ExtResource("1_4mi6d")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -65.0
+offset_top = 12.0
+offset_right = -4.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_33ty8")
+theme_override_font_sizes/font_size = 35
+text = "HP:"

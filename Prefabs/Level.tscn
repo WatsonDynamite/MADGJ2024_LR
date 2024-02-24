@@ -14,6 +14,7 @@ sky_material = SubResource("ProceduralSkyMaterial_uxqr8")
 
 [sub_resource type="Environment" id="Environment_rptky"]
 background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_unrwi")
 tonemap_mode = 2
 glow_enabled = true
@@ -61,10 +62,6 @@ stretch_margin_left = 20
 stretch_margin_top = 20
 texture_under = ExtResource("3_utiut")
 texture_progress = ExtResource("4_02pfd")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.350028, 0.679667, 0.644619, 0, -0.688152, 0.725567, 0.936739, -0.253968, -0.240872, 0, 106.021, 0)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rptky")

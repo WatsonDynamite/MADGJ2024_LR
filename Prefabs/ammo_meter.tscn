@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c40q02tgw3q80"]
+
+[ext_resource type="Texture2D" uid="uid://dww35sa7hbs2j" path="res://Assets/ammo.png" id="1_rexr5"]
+[ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="2_kxye8"]
+
+[node name="AmmoMeter" type="TextureRect"]
+offset_right = 16.0
+offset_bottom = 65.0
+texture = ExtResource("1_rexr5")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -127.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_kxye8")
+theme_override_font_sizes/font_size = 35
+text = "Ammo:"
