@@ -25,12 +25,16 @@ dof_blur_far_transition = 1.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 5.0
 dof_blur_amount = 0.03
+[gd_scene load_steps=3 format=3 uid="uid://wus2lns7fucd"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
+[ext_resource type="MeshLibrary" uid="uid://jg4uxe7aiqtl" path="res://Assets/tileset2.tres" id="2_ta0uy"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_red2q")
+mesh_library = ExtResource("2_ta0uy")
 cell_size = Vector3(1, 1, 1)
 
 [node name="Container" type="Control" parent="."]
@@ -64,3 +68,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rptky")
 camera_attributes = SubResource("CameraAttributesPractical_im5e3")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

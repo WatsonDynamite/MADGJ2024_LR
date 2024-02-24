@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://drqht7eb1jr1j"]
+
+[ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="1_ge1k6"]
+[ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_vyihc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5560"]
+size = Vector3(0.479736, 0.730286, 0.313049)
+
+[node name="Zombie" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_vyihc")
+
+[node name="zombie" parent="." instance=ExtResource("1_ge1k6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373163, 0.150754)
+shape = SubResource("BoxShape3D_h5560")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
