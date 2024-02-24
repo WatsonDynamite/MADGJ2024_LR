@@ -1,7 +1,9 @@
 extends Node3D
 
 @onready var gridMap: GridMap = $GridMap;
-@onready var warningLevel: TextureProgressBar = $Container/WarningLevel; 
+@onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
+
+var crosshair = preload("res://Assets/crosshair.png");
 
 var zombie = preload("res://Prefabs/Zombie.tscn")
 var skeleton = preload("res://Prefabs/skeleton.tscn")
@@ -19,6 +21,8 @@ var cur_wall_size = INITIAL_WALL_SIZE;
 var wall_health = 3;	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_custom_mouse_cursor(crosshair, Input.CURSOR_ARROW, Vector2(16.5, 16.5));
+	
 	mobs.append(zombie)
 	mobs.append(skeleton)
 	mobs.append(slime)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2g4hisul2jer"]
+[gd_scene load_steps=11 format=3 uid="uid://b2g4hisul2jer"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="2_i6kpo"]
 [ext_resource type="MeshLibrary" uid="uid://jg4uxe7aiqtl" path="res://Assets/tileset2.tres" id="2_ta0uy"]
+[ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="3_3v0ps"]
 [ext_resource type="Texture2D" uid="uid://ccstm6m6i0och" path="res://Assets/warning_bg.png" id="3_utiut"]
 [ext_resource type="Texture2D" uid="uid://whnhkw6fnmlj" path="res://Assets/warning.png" id="4_02pfd"]
 
@@ -24,16 +26,40 @@ volumetric_fog_albedo = Color(0.0156863, 0.0156863, 0.0156863, 1)
 volumetric_fog_length = 49.16
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_im5e3"]
+exposure_multiplier = 0.884
 dof_blur_far_enabled = true
-dof_blur_far_distance = 8.0
+dof_blur_far_distance = 9.0
 dof_blur_far_transition = 1.0
 dof_blur_near_enabled = true
-dof_blur_near_distance = 5.0
+dof_blur_near_distance = 4.5
 dof_blur_amount = 0.07
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
 metadata/_edit_group_ = true
+
+[node name="GameManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("2_i6kpo")
+
+[node name="Score" type="Label" parent="GameManager"]
+offset_left = -144.0
+offset_top = 3.0
+offset_right = -15.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("3_3v0ps")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SurvivalTimer" type="Timer" parent="GameManager/Score"]
+autostart = true
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_ta0uy")
@@ -76,4 +102,5 @@ camera_attributes = SubResource("CameraAttributesPractical_im5e3")
 wait_time = 5.0
 autostart = true
 
+[connection signal="timeout" from="GameManager/Score/SurvivalTimer" to="GameManager" method="_on_survival_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,6 +11,8 @@ const HP_SPRITE_HEIGHT = 65;
 var model: Node3D 
 var bullet: PackedScene  = preload("res://Prefabs/bullet.tscn")
 var minusHPParticle: PackedScene = preload("res://Prefabs/Particles/damage_particle.tscn");
+var bloodParticle: PackedScene = preload("res://Prefabs/Particles/wall_particle.tscn");
+var deathScreen: PackedScene = preload("res://Prefabs/death_screen.tscn");
 
 @onready var ammoMeter: TextureRect = $Control/AmmoMeter
 @onready var hpMeter: TextureRect = $Control/HpMeter
@@ -32,8 +34,9 @@ var health = 3
 func get_input(delta):
 	# Input handling
 	var movement: Vector3 = Vector3.ZERO
-	movement.x = Input.get_action_strength("left") - Input.get_action_strength("right")
-	movement.z = Input.get_action_strength("up") - Input.get_action_strength("down")
+	if(health > 0):
+		movement.x = Input.get_action_strength("left") - Input.get_action_strength("right")
+		movement.z = Input.get_action_strength("up") - Input.get_action_strength("down")
 	# Normalize the movement vector to avoid faster diagonal movement
 	movement = movement.normalized()
 	# Apply movement
@@ -88,8 +91,20 @@ func takeDamage(value):
 	particle.position = position;
 	get_parent().add_child(particle);
 		
+	if(health <= 0):
+		#dead!
+		_on_death()
+		
 	print(health);
-	pass
+	pass;
+	
+func _on_death():
+	model.visible = false;
+	var particle = bloodParticle.instantiate();
+	var deathScr = deathScreen.instantiate();
+	particle.position = position;
+	get_parent().add_child(particle);
+	get_parent().add_child(deathScr);
 	
 func _on_reload_timer_timeout():
 	outOfAmmoLabel.visible = false;

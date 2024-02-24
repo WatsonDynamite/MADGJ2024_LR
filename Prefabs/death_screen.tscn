@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdsfe6o2eax42"]
+
+[ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="1_cicyq"]
+[ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="1_qexcr"]
+
+[node name="DeathScreen" type="Control"]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qexcr")
+
+[node name="ui_elements" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel/ui_elements"]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 350.0
+offset_right = 1504.0
+offset_bottom = 440.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.823529, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.521569, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_cicyq")
+theme_override_font_sizes/font_size = 90
+text = "HELL HATH TAKEN THEE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonTimer" type="Timer" parent="Panel/ui_elements"]
+wait_time = 2.0
+
+[node name="RetryButton" type="Button" parent="Panel/ui_elements"]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 655.0
+offset_right = 1099.0
+offset_bottom = 789.0
+theme_override_fonts/font = ExtResource("1_cicyq")
+theme_override_font_sizes/font_size = 60
+text = "RETRY"
+
+[node name="Label2" type="Label" parent="Panel/ui_elements"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 481.0
+offset_right = 1120.0
+offset_bottom = 549.0
+theme_override_fonts/font = ExtResource("1_cicyq")
+theme_override_font_sizes/font_size = 50
+text = "Score:"
+
+[connection signal="pressed" from="Panel/ui_elements/RetryButton" to="Panel" method="_on_retry_button_pressed"]
