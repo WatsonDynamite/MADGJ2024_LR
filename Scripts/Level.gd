@@ -104,3 +104,4 @@ func _on_timer_timeout():
 func _on_new_wave(wave: int):
 	spawn_timer.start(spawn_freq_time - (wave * spawn_freq_mod));
 	
+

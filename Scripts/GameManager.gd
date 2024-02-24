@@ -41,3 +41,9 @@ func _format_seconds(time : float):
 func _start_wave(wave: int):
 	waveTimer.start(wave * 60);
 	
+
+
+func _on_wave_timer_timeout():
+	wave_counter += 1;
+	_start_wave(wave_counter)
+	pass # Replace with function body.
