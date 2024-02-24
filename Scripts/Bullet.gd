@@ -16,7 +16,6 @@ func setDirection(vector):
 	transform = vector
 	
 func _on_area_entered(area):
-	print("monster")
 	hide()
 	area.queue_free()
 	pass # Replace with function body.

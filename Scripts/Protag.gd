@@ -8,6 +8,7 @@ var level: Node3D
 var ammo: Array
 var ammoValue = 10
 var currentBullet = 0
+var health = 3
 
 func get_input(delta):
 	# Input handling
@@ -26,7 +27,6 @@ func get_input(delta):
 	model.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
 	
 	if Input.is_action_just_pressed("shoot") && ammoValue > 0:
-		print(ammo[currentBullet])
 		ammo[currentBullet].set_process_mode(PROCESS_MODE_ALWAYS)
 		ammo[currentBullet].show()
 		ammo[currentBullet].position = gunDirection.global_position
@@ -54,4 +54,8 @@ func _process(delta):
 func _physics_process(delta):
 	get_input(delta)
 	move_and_slide()
+	
+func takeDamage(value):
+	health -= value
+	print(health)
 	
