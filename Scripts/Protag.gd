@@ -44,7 +44,6 @@ func get_input(delta):
 	model.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
 	
 	if Input.is_action_just_pressed("shoot") && ammoValue > 0:
-		
 		ammo[currentBullet].set_process_mode(PROCESS_MODE_ALWAYS)
 		ammo[currentBullet].show()
 		ammo[currentBullet].position = gunDirection.global_position
@@ -53,8 +52,8 @@ func get_input(delta):
 		ammoValue -= 1
 		if currentBullet == 15:
 			currentBullet = 0
-	if(ammoValue == 0):
-		outOfAmmoLabel.visible = true;
+		if(ammoValue == 0):
+			outOfAmmoLabel.visible = true;
 	if Input.is_action_just_pressed("reload"):
 		outOfAmmoLabel.visible = false;
 		reloadingLabel.visible = true;

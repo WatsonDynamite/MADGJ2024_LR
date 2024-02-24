@@ -33,6 +33,7 @@ transform = Transform3D(-1, -5.54899e-08, -6.75545e-08, 0, 0.772734, -0.634731, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivct"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.19395, 0)
+current = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

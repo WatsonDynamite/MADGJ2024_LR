@@ -1,10 +1,13 @@
 extends Node3D
 
 @onready var gridMap: GridMap = $GridMap;
-@onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
+@onready var warningLevel: TextureProgressBar = $Container/WarningLevel; 
+
 var zombie = preload("res://Prefabs/Zombie.tscn")
 var skeleton = preload("res://Prefabs/skeleton.tscn")
 var slime = preload("res://Prefabs/slime.tscn")
+var wallParticle = preload("res://Prefabs/wall_particle.tscn")
+
 var mobs: Array
 var spawn_timer: Timer
 enum Tiles { FLOOR, WALL };
@@ -41,7 +44,11 @@ func _input(event):
 # make sure factor is always an odd number (?)
 func _set_wall_to(factor: int):
 	var prevWalls = gridMap.get_used_cells_by_item(Tiles.WALL);
+	
 	for i in prevWalls:
+		var particle = wallParticle.instantiate();
+		particle.position = i;
+		get_parent().add_child(particle);
 		gridMap.set_cell_item(i, -1);
 	var offset = factor /2 ;
 	for i in range(1, factor -1 ):

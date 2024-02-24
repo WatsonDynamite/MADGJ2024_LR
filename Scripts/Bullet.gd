@@ -18,7 +18,6 @@ func setDirection(vector):
 	transform = vector
 	
 func _on_area_entered(area):
-	print("teste")
 	_disable()
 	area.queue_free()
 	pass # Replace with function body.
