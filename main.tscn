@@ -58,6 +58,24 @@ visible = false
 [node name="Bullet15" parent="Bullets" instance=ExtResource("6_lcnlk")]
 visible = false
 
+[node name="Bullet16" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet17" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet18" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet19" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet20" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Zombie" parent="." instance=ExtResource("6_frexo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.007)
+
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13, 0)
 light_energy = 16.0

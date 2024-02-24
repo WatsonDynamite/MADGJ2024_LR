@@ -22,6 +22,8 @@ var deathScreen: PackedScene = preload("res://Prefabs/death_screen.tscn");
 
 @onready var reloadTimer: Timer = $ReloadTimer
 @onready var contactDamageTimer: Timer = $ContactDamageTimer
+@onready var damageTimer: Timer = $DamageTimer
+
 
 var gunDirection: Node3D
 var level: Node3D
@@ -32,6 +34,8 @@ var is_dead = false;
 var ammoValue = MAX_AMMO
 var currentBullet = 0
 var health = 3
+var canBeDamaged = true
+var collided = false
 
 func get_input(delta):
 	# Input handling
@@ -57,7 +61,7 @@ func get_input(delta):
 		ammo[currentBullet].rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
 		currentBullet += 1
 		ammoValue -= 1
-		if currentBullet == 15:
+		if currentBullet == 20:
 			currentBullet = 0
 		if(ammoValue == 0):
 			outOfAmmoLabel.visible = true;
@@ -78,6 +82,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if collided && canBeDamaged:
+		canBeDamaged = false
+		takeDamage(1)
+		damageTimer.start()
 	pass
 	
 func _physics_process(delta):
@@ -115,3 +123,30 @@ func _on_reload_timer_timeout():
 	ammoMeter.set_size(Vector2(AMMO_SPRITE_WIDTH * ammoValue, AMMO_SPRITE_HEIGHT));
 	pass # Replace with function body.
 
+
+
+func _on_area_3d_body_entered(body):
+	if body.name != "Player":
+		collided = true
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_exited(body):
+	collided = false
+	pass # Replace with function body.s
+
+
+func _on_damage_timer_timeout():
+	damageTimer.stop()
+	canBeDamaged = true
+	pass # Replace with function body.
+
+
+func _on_area_3d_area_entered(area):
+	collided = true
+	pass # Replace with function body.
+
+
+func _on_area_3d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	collided = false
+	pass # Replace with function body.
