@@ -25,10 +25,11 @@ volumetric_fog_length = 49.16
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_im5e3"]
 dof_blur_far_enabled = true
+dof_blur_far_distance = 8.0
 dof_blur_far_transition = 1.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 5.0
-dof_blur_amount = 0.03
+dof_blur_amount = 0.07
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
