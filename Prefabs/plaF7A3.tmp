@@ -64,7 +64,6 @@ advance_mode = 2
 advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5f25"]
-xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"idle"
 
@@ -92,6 +91,7 @@ script = ExtResource("1_slckp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.332, 0.565)
 
 [node name="Body" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="protag_body" parent="Model/Body" instance=ExtResource("2_nsktf")]
 

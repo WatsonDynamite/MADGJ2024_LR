@@ -21,6 +21,7 @@ var minusHPParticle: PackedScene = preload("res://Prefabs/Particles/damage_parti
 @onready var reloadTimer: Timer = $ReloadTimer
 @onready var contactDamageTimer: Timer = $ContactDamageTimer
 @onready var damageTimer: Timer = $DamageTimer
+@onready var animationTree: AnimationTree = $Model/Body/AnimationTree
 
 
 var gunDirection: Node3D
@@ -43,6 +44,8 @@ func get_input(delta):
 	# Apply movement
 	velocity.x = movement.x * speed
 	velocity.z = movement.z * speed
+	animationTree.set("parameters/conditions/moving", movement.x != 0 || movement.z != 0);
+	animationTree.set("parameters/conditions/idle", movement.x  == 0 && movement.z == 0);
 	#Mouse
 	var mouse_position: Vector2 = get_viewport().get_mouse_position()
 	var center: Vector2 = get_viewport().size / 2
