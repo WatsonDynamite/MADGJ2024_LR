@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @export var speed = 4
 var model: Node3D 
+var bullet: PackedScene  = preload("res://Prefabs/bullet.tscn")
+var gunDirection: Node3D
+var level: Node3D
 
 func get_input(delta):
 	# Input handling
@@ -18,10 +21,18 @@ func get_input(delta):
 	var center: Vector2 = get_viewport().size / 2
 	var angle: float = -Vector2.UP.angle_to(mouse_position - center)
 	model.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
-	#model.rotate(Vector3.UP, angle)
+	
+	if Input.is_action_just_pressed("shoot"):
+		print("teste")
+		var bulletInstance = bullet.instantiate()
+		bulletInstance.position = gunDirection.global_position
+		bulletInstance.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
+		level.add_child(bulletInstance)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	model = get_node("Model")
+	gunDirection = get_node("Model/GunDirection")
+	level = get_parent()
 	pass # Replace with function body.
 
 
