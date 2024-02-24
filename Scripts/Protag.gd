@@ -10,14 +10,16 @@ const HP_SPRITE_HEIGHT = 65;
 @export var speed = 4
 var model: Node3D 
 var bullet: PackedScene  = preload("res://Prefabs/bullet.tscn")
+var minusHPParticle: PackedScene = preload("res://Prefabs/Particles/damage_particle.tscn");
 
-@onready var ammoMeter: TextureRect = $Control/AmmoMeter;
-@onready var hpMeter: TextureRect = $Control/HpMeter;
+@onready var ammoMeter: TextureRect = $Control/AmmoMeter
+@onready var hpMeter: TextureRect = $Control/HpMeter
 
 @onready var reloadingLabel: Label3D = $ReloadingLabel
 @onready var outOfAmmoLabel: Label3D = $OutOfAmmoLabel
 
 @onready var reloadTimer: Timer = $ReloadTimer
+@onready var contactDamageTimer: Timer = $ContactDamageTimer
 
 var gunDirection: Node3D
 var level: Node3D
@@ -81,6 +83,11 @@ func _physics_process(delta):
 func takeDamage(value):
 	health -= value
 	hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT));
+	
+	var particle = minusHPParticle.instantiate();
+	particle.position = position;
+	get_parent().add_child(particle);
+		
 	print(health);
 	pass
 	
@@ -90,3 +97,4 @@ func _on_reload_timer_timeout():
 	ammoValue = 10;
 	ammoMeter.set_size(Vector2(AMMO_SPRITE_WIDTH * ammoValue, AMMO_SPRITE_HEIGHT));
 	pass # Replace with function body.
+

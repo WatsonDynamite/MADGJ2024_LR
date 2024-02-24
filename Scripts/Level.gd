@@ -6,7 +6,7 @@ extends Node3D
 var zombie = preload("res://Prefabs/Zombie.tscn")
 var skeleton = preload("res://Prefabs/skeleton.tscn")
 var slime = preload("res://Prefabs/slime.tscn")
-var wallParticle = preload("res://Prefabs/wall_particle.tscn")
+var wallParticle = preload("res://Prefabs/Particles/wall_particle.tscn")
 
 var mobs: Array
 var spawn_timer: Timer

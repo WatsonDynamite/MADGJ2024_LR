@@ -2,7 +2,7 @@ extends Area3D
 var speed = 3.5
 var direction = Vector3.ZERO
 
-@onready var particles = preload("res://Prefabs/warning_particle.tscn");
+@onready var particles = preload("res://Prefabs/Particles/warning_particle.tscn");
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

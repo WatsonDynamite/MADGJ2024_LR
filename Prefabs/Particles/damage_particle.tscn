@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://gd8ttlokocp2"]
+[gd_scene load_steps=8 format=3 uid="uid://43yfbehu5rq"]
 
-[ext_resource type="Texture2D" uid="uid://whnhkw6fnmlj" path="res://Assets/warning.png" id="1_1fnb7"]
-[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="2_fegwt"]
+[ext_resource type="Texture2D" uid="uid://gxfyuydwrqtb" path="res://Assets/hp_minus.png" id="1_33unw"]
+[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="2_blfch"]
 
 [sub_resource type="Gradient" id="Gradient_jr4u0"]
 offsets = PackedFloat32Array(0, 0.52741, 1)
@@ -22,14 +22,14 @@ color_ramp = SubResource("GradientTexture1D_jic7i")
 transparency = 1
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_1fnb7")
+albedo_texture = ExtResource("1_33unw")
 texture_filter = 2
 texture_repeat = false
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_n4su0"]
 material = SubResource("StandardMaterial3D_ln7pp")
-size = Vector2(0.3, 0.3)
+size = Vector2(0.6, 0.3)
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -39,6 +39,6 @@ amount = 1
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_1pljn")
 draw_pass_1 = SubResource("QuadMesh_n4su0")
-script = ExtResource("2_fegwt")
+script = ExtResource("2_blfch")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

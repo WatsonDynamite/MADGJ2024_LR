@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqywmofljbsy0"]
 
-[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="2_crrk7"]
+[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="1_afafi"]
 
 [sub_resource type="Gradient" id="Gradient_jr4u0"]
 offsets = PackedFloat32Array(0, 0.52741, 1)
@@ -37,6 +37,6 @@ explosiveness = 0.93
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1pljn")
 draw_pass_1 = SubResource("BoxMesh_8p460")
-script = ExtResource("2_crrk7")
+script = ExtResource("1_afafi")
 
 [connection signal="finished" from="." to="." method="_on_finished"]
