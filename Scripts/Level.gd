@@ -1,15 +1,19 @@
 extends Node3D
 
 @onready var gridMap: GridMap = $GridMap;
-
+@onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
+var zombie = preload("res://Prefabs/Zombie.tscn")
+var spawn_timer: Timer
 enum Tiles { FLOOR, WALL };
 
 const UNIVERSE_SIZE = 65;
-const INITIAL_WALL_SIZE = 15;
+const INITIAL_WALL_SIZE = 17;
 
 var cur_wall_size = INITIAL_WALL_SIZE;
+var wall_health = 3;	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_spawner()
 	var offset = UNIVERSE_SIZE / 2;
 	for i in UNIVERSE_SIZE:
 		for j in UNIVERSE_SIZE:
@@ -42,7 +46,25 @@ func _set_wall_to(factor: int):
 		gridMap.set_cell_item(Vector3(-offset, 1, j - offset), Tiles.WALL, 16);
 	pass;
 	
+func _decress_curr_size(value: int):
+	wall_health -=1
+	if wall_health == 0:
+		cur_wall_size -= value;
+		wall_health = 3
+		_set_wall_to(cur_wall_size);
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	warningLevel.value = 3-wall_health;
 	pass
+	
+func _spawner():
+	var teste =zombie.instantiate()
+	teste.position = Vector3(0,0,cur_wall_size)
+	add_child(teste)
+
+
+func _on_timer_timeout():
+	_spawner()
+	pass # Replace with function body.

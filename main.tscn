@@ -1,68 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://48fpcgwwhyj5"]
-
+[gd_scene load_steps=5 format=3 uid="uid://48fpcgwwhyj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2g4hisul2jer" path="res://Prefabs/Level.tscn" id="1_5v0i7"]
-[ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="2_07mk0"]
-[ext_resource type="Script" path="res://Scripts/Protag.gd" id="2_cacqo"]
-[ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="3_vid73"]
+[ext_resource type="PackedScene" uid="uid://bs7h7iumeflci" path="res://Prefabs/player.tscn" id="2_3rn8t"]
 [ext_resource type="PackedScene" uid="uid://drqht7eb1jr1j" path="res://Prefabs/Zombie.tscn" id="6_frexo"]
 [ext_resource type="PackedScene" uid="uid://b1siuuxneokkc" path="res://Prefabs/bullet.tscn" id="6_lcnlk"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3mg2j"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_unrwi"]
-sky_material = SubResource("ProceduralSkyMaterial_3mg2j")
-
-[sub_resource type="Environment" id="Environment_5pa28"]
-background_mode = 2
-sky = SubResource("Sky_unrwi")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0m7ab"]
-size = Vector3(0.476171, 0.791138, 0.267639)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Level" parent="." instance=ExtResource("1_5v0i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52246, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_5pa28")
-
-
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47369, 0)
-script = ExtResource("2_cacqo")
-
-[node name="Model" type="Node3D" parent="Player"]
-
-[node name="protag_body" parent="Player/Model" instance=ExtResource("2_07mk0")]
-
-[node name="protag_head" parent="Player/Model" instance=ExtResource("3_vid73")]
-transform = Transform3D(1, 0, 0, 0, 0.937178, 0.34885, 0, -0.34885, 0.937178, 0, -0.0215266, 0.157584)
-
-
-[node name="GunDirection" type="Node3D" parent="Player/Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.051378, 0.331666, 0.564808)
-
-[node name="protag_model" parent="Player" instance=ExtResource("1_6te4k")]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0574546, 0.398865, 0.132896)
-
-shape = SubResource("BoxShape3D_0m7ab")
-
-[node name="CameraPivct" type="Node3D" parent="Player"]
-transform = Transform3D(-1, -5.54899e-08, -6.75545e-08, 0, 0.772734, -0.634731, 8.74228e-08, -0.634731, -0.772734, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivct"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.19395, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_rd641")
+[node name="Player" parent="." instance=ExtResource("2_3rn8t")]
 
 [node name="Bullets" type="Node3D" parent="."]
 
@@ -112,4 +60,4 @@ visible = false
 visible = false
 
 [node name="Zombie" parent="." instance=ExtResource("6_frexo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.20512)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.007)

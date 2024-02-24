@@ -8,7 +8,7 @@ var attackTimer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().root.get_child(0).get_node("Player")
 	attackTimer = get_node("Timer")
 	pass # Replace with function body.
 
