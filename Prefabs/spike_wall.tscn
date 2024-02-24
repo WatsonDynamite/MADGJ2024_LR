@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm865v2tymb63"]
+[gd_scene load_steps=6 format=3 uid="uid://cacbyf18ryw4c"]
 
 [ext_resource type="Texture2D" uid="uid://bubb2j5xv0t3k" path="res://Assets/wall_test.png" id="1_ccfbh"]
 [ext_resource type="ArrayMesh" uid="uid://wm7ydtbfiobv" path="res://Assets/wall_test.obj" id="2_4v0tj"]

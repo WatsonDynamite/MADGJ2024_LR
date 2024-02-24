@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=3 uid="uid://ee4binfrmnh1"]
+
+[ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="1_ro1ea"]
+[ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="2_nmdyc"]
+[ext_resource type="PackedScene" uid="uid://c4t0skghg3ynt" path="res://Assets/adema.gltf" id="3_3vnaq"]
+[ext_resource type="PackedScene" uid="uid://bcr8ovsmvj1mt" path="res://Assets/slime.gltf" id="4_dqfga"]
+[ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="5_tqqt1"]
+[ext_resource type="Texture2D" uid="uid://bhx7hebynlhgu" path="res://Assets/floor_tex.png" id="6_y3nn4"]
+[ext_resource type="Texture2D" uid="uid://dpijle2anfyrx" path="res://Assets/claustromania.png" id="7_2x5ou"]
+[ext_resource type="Texture2D" uid="uid://0n07qf8nno5u" path="res://Assets/start.png" id="8_bkwq0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jqj8m"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5qeen"]
+sky_material = SubResource("ProceduralSkyMaterial_jqj8m")
+
+[sub_resource type="Environment" id="Environment_2xt7f"]
+background_mode = 2
+sky = SubResource("Sky_5qeen")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxel2"]
+albedo_texture = ExtResource("6_y3nn4")
+uv1_scale = Vector3(177, 177, 177)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dy7pf"]
+size = Vector2(131, 190)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vm4u"]
+transparency = 1
+albedo_texture = ExtResource("7_2x5ou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_olftg"]
+material = SubResource("StandardMaterial3D_2vm4u")
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xt7f")
+
+[node name="Protag" type="Node3D" parent="."]
+transform = Transform3D(0.988263, 0.152762, 0, -0.152762, 0.988263, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="protag_body" parent="Protag" instance=ExtResource("1_ro1ea")]
+
+[node name="protag_head" parent="Protag" instance=ExtResource("2_nmdyc")]
+transform = Transform3D(1, 0, 0, 0, 0.982745, 0.184963, 0, -0.184963, 0.982745, 0, -0.0273386, 0.0928214)
+
+[node name="adema" parent="." instance=ExtResource("3_3vnaq")]
+transform = Transform3D(0.773105, -0.0432556, 0.632801, -0.0637316, 0.987325, 0.145352, -0.631068, -0.152701, 0.76055, 0.505346, 0.356163, -0.66471)
+
+[node name="slime" parent="." instance=ExtResource("4_dqfga")]
+transform = Transform3D(0.870081, 0, 0.49291, 0, 1, 0, -0.49291, 0, 0.870081, -0.736472, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999777, 0.0210995, 0, -0.0210995, 0.999777, 0, 0.601687, 2.60097)
+
+[node name="zombie" parent="." instance=ExtResource("5_tqqt1")]
+transform = Transform3D(3.97349, 0, 0, 0, 3.97349, 0, 0, 0, 3.97349, 0.249485, 0, -2.44264)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_nxel2")
+mesh = SubResource("PlaneMesh_dy7pf")
+
+[node name="Logo" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.55475, 0, 0, 0, -2.10471e-08, -0.4815, 0, 0.4815, -2.10471e-08, 0, 1.93138, 0)
+mesh = SubResource("PlaneMesh_olftg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.817
+anchor_right = 0.5
+anchor_bottom = 0.817
+offset_left = -186.0
+offset_top = -97.416
+offset_right = 195.0
+offset_bottom = 73.584
+texture_normal = ExtResource("8_bkwq0")
