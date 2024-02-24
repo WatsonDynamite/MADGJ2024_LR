@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ee4binfrmnh1"]
+[gd_scene load_steps=17 format=3 uid="uid://ee4binfrmnh1"]
 
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="1_ro1ea"]
 [ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="2_nmdyc"]
@@ -8,19 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bhx7hebynlhgu" path="res://Assets/floor_tex.png" id="6_y3nn4"]
 [ext_resource type="Texture2D" uid="uid://dpijle2anfyrx" path="res://Assets/claustromania.png" id="7_2x5ou"]
 [ext_resource type="Texture2D" uid="uid://0n07qf8nno5u" path="res://Assets/start.png" id="8_bkwq0"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jqj8m"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_5qeen"]
-sky_material = SubResource("ProceduralSkyMaterial_jqj8m")
-
-[sub_resource type="Environment" id="Environment_2xt7f"]
-background_mode = 2
-sky = SubResource("Sky_5qeen")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxel2"]
 albedo_texture = ExtResource("6_y3nn4")
@@ -37,10 +24,32 @@ albedo_texture = ExtResource("7_2x5ou")
 [sub_resource type="PlaneMesh" id="PlaneMesh_olftg"]
 material = SubResource("StandardMaterial3D_2vm4u")
 
-[node name="TitleScreen" type="Node3D"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfdon"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2xt7f")
+[sub_resource type="Sky" id="Sky_unrwi"]
+sky_material = SubResource("ProceduralSkyMaterial_wfdon")
+
+[sub_resource type="Environment" id="Environment_u0xqt"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_unrwi")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2239
+volumetric_fog_albedo = Color(0.0156863, 0.0156863, 0.0156863, 1)
+volumetric_fog_length = 49.16
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ul24s"]
+exposure_multiplier = 0.884
+dof_blur_far_distance = 16.27
+dof_blur_far_transition = 1.0
+dof_blur_near_distance = 4.5
+dof_blur_amount = 0.07
+
+[node name="TitleScreen" type="Node3D"]
 
 [node name="Protag" type="Node3D" parent="."]
 transform = Transform3D(0.988263, 0.152762, 0, -0.152762, 0.988263, 0, 0, 0, 1, 0, 0, 0)
@@ -90,3 +99,14 @@ offset_top = -97.416
 offset_right = 195.0
 offset_bottom = 73.584
 texture_normal = ExtResource("8_bkwq0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u0xqt")
+camera_attributes = SubResource("CameraAttributesPractical_ul24s")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.608761, 0.793353, 0, -0.793353, 0.608761, 0, 4.736, 4.478)
+light_energy = 7.423
+light_indirect_energy = 0.775
+spot_range = 34.198
+spot_angle = 34.2

@@ -11,13 +11,13 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_unrwi"]
+[sub_resource type="Sky" id="Sky_sr8uv"]
 sky_material = SubResource("ProceduralSkyMaterial_uxqr8")
 
 [sub_resource type="Environment" id="Environment_rptky"]
 background_mode = 2
 background_energy_multiplier = 0.0
-sky = SubResource("Sky_unrwi")
+sky = SubResource("Sky_sr8uv")
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
@@ -49,6 +49,7 @@ grow_horizontal = 0
 script = ExtResource("2_i6kpo")
 
 [node name="Score" type="Label" parent="GameManager"]
+layout_mode = 0
 offset_left = -207.0
 offset_top = -2.0
 offset_right = 36.0
