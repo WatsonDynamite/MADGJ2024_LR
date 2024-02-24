@@ -23,3 +23,4 @@ transform = Transform3D(2.843, 0, 0, 0, 2.843, 0, 0, 0, 2.843, 0, 0, 0)
 shape = SubResource("BoxShape3D_2n4xx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2g4hisul2jer"]
+[gd_scene load_steps=3 format=3 uid="uid://wus2lns7fucd"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_aj84e"]
-[ext_resource type="MeshLibrary" uid="uid://wajnudcfcx6f" path="res://Assets/tileset.tres" id="1_red2q"]
+[ext_resource type="MeshLibrary" uid="uid://jg4uxe7aiqtl" path="res://Assets/tileset2.tres" id="2_ta0uy"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aj84e")
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_red2q")
+mesh_library = ExtResource("2_ta0uy")
 cell_size = Vector3(1, 1, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
