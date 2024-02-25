@@ -39,17 +39,6 @@ func _ready():
 	
 	_on_new_wave(1);
 	pass # Replace with function body.
-
-
-func _input(event):
-	if(event.is_action_pressed("debug_increase_wall")):
-		cur_wall_size += 2;
-		light.spot_angle += lightModifier
-		_set_wall_to(cur_wall_size);
-	if(event.is_action_pressed("debug_decrease_wall")):
-		cur_wall_size -= 2;
-		light.spot_angle -= lightModifier
-		_set_wall_to(cur_wall_size);
 	
 # Creates a wall around the center of the level with a size of factor x factor
 # make sure factor is always an odd number (?)

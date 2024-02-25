@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqawsdly0a2bb"]
+[gd_scene load_steps=6 format=3 uid="uid://bqawsdly0a2bb"]
 
 [ext_resource type="Script" path="res://Scripts/PowerUps/Alcohol.gd" id="1_p6xsq"]
+[ext_resource type="PackedScene" uid="uid://b3hrxkul1c7y1" path="res://Prefabs/Particles/alcohol_particle.tscn" id="2_3rc0y"]
 [ext_resource type="Texture2D" uid="uid://lo2roacwd0bo" path="res://Assets/alcohol.png" id="2_lrl2i"]
 [ext_resource type="AudioStream" uid="uid://dw6aamdwtnilp" path="res://Assets/SFX/alcoholSFX.mp3" id="3_rp17w"]
 
@@ -8,12 +9,12 @@
 size = Vector3(0.500427, 0.490173, 0.517578)
 
 [node name="PowerUp" type="Area3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.263234, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263234, 0)
 script = ExtResource("1_p6xsq")
+particlePrefab = ExtResource("2_3rc0y")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-texture_filter = 0
 texture = ExtResource("2_lrl2i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

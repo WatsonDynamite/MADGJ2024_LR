@@ -1,6 +1,7 @@
 extends Area3D
 
 @onready var audio = $AudioStreamPlayer
+@export var particlePrefab: PackedScene;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,3 +16,8 @@ func _powerUp():
 	get_parent().get_parent().get_node("Player")._raise_speed()
 	audio.play()
 	
+
+func _emit_particle(position: Vector3):
+	var particle = particlePrefab.instantiate();
+	particle.position = position;
+	get_parent().add_child(particle);

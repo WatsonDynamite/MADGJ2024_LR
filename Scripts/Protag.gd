@@ -11,6 +11,7 @@ const HP_SPRITE_HEIGHT = 65;
 var model: Node3D 
 var bullet: PackedScene  = preload("res://Prefabs/bullet.tscn")
 var minusHPParticle: PackedScene = preload("res://Prefabs/Particles/damage_particle.tscn");
+
 var bloodParticle: PackedScene = preload("res://Prefabs/Particles/wall_particle.tscn");
 var deathScreen: PackedScene = preload("res://Prefabs/death_screen.tscn");
 
@@ -132,7 +133,6 @@ func _on_reload_timer_timeout():
 	pass # Replace with function body.
 
 
-
 func _on_area_3d_body_entered(body):
 	if body.name != "Player":
 		collided = true
@@ -154,7 +154,7 @@ func _on_area_3d_area_entered(area):
 	if area.name != "PowerUp":
 		collided = true
 	else:
-		print("unleash")
+		area._emit_particle(position)
 		area._powerUp()
 		area.position.y = -10
 	pass # Replace with function body.

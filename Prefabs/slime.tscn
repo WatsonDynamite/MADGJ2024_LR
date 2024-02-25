@@ -59,7 +59,7 @@ transitions = ["Start", "slime", SubResource("AnimationNodeStateMachineTransitio
 
 [node name="Slime" type="Area3D"]
 script = ExtResource("1_4xxfd")
-health = 3
+health = 2
 movespeed = 2
 death_particle = ExtResource("2_fa25x")
 

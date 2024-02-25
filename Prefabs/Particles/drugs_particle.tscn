@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwvdasevss8bf"]
+
+[ext_resource type="Texture2D" uid="uid://p4rif5fl8puq" path="res://Assets/speed_up.png" id="1_0ahyo"]
+[ext_resource type="Script" path="res://Scripts/warning_particle.gd" id="2_3bmsa"]
+
+[sub_resource type="Gradient" id="Gradient_jr4u0"]
+offsets = PackedFloat32Array(0, 0.52741, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jic7i"]
+gradient = SubResource("Gradient_jr4u0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1pljn"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -3, 0)
+color_ramp = SubResource("GradientTexture1D_jic7i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ln7pp"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_0ahyo")
+texture_filter = 2
+texture_repeat = false
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_wrx6k"]
+material = SubResource("StandardMaterial3D_ln7pp")
+size = Vector2(1.33, 0.3)
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_1pljn")
+draw_pass_1 = SubResource("QuadMesh_wrx6k")
+script = ExtResource("2_3bmsa")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

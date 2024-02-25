@@ -1,19 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpje74vhrw8sd"]
+[gd_scene load_steps=6 format=3 uid="uid://bpje74vhrw8sd"]
 
 [ext_resource type="Script" path="res://Scripts/PowerUps/RockNRoll.gd" id="1_1b8k4"]
 [ext_resource type="Texture2D" uid="uid://bxxlabb44ldjg" path="res://Assets/guitar.png" id="1_x1hi6"]
+[ext_resource type="PackedScene" uid="uid://bhphxoc4rqjxk" path="res://Prefabs/Particles/rock_n_roll_particle.tscn" id="2_i088b"]
 [ext_resource type="AudioStream" uid="uid://crlw48hdbyup" path="res://Assets/SFX/rock.wav" id="3_x12jv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6awlp"]
 size = Vector3(0.500427, 0.490173, 0.517578)
 
 [node name="PowerUp" type="Area3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.263234, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263234, 0)
 script = ExtResource("1_1b8k4")
+particlePrefab = ExtResource("2_i088b")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-texture_filter = 0
 texture = ExtResource("1_x1hi6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

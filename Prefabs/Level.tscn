@@ -32,7 +32,7 @@ dof_blur_far_enabled = true
 dof_blur_far_distance = 9.0
 dof_blur_far_transition = 1.0
 dof_blur_near_enabled = true
-dof_blur_near_distance = 4.5
+dof_blur_near_distance = 6.05
 dof_blur_amount = 0.07
 
 [node name="Level" type="Node3D"]

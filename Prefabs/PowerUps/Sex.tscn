@@ -1,19 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhmsgr1lsh1cc"]
+[gd_scene load_steps=6 format=3 uid="uid://bhmsgr1lsh1cc"]
 
 [ext_resource type="Script" path="res://Scripts/PowerUps/Sex.gd" id="1_xxqub"]
 [ext_resource type="Texture2D" uid="uid://7x5a2spcy2v1" path="res://Assets/sex.png" id="2_qoa7r"]
-[ext_resource type="AudioStream" uid="uid://cdpfrcaxqrio2" path="res://Assets/SFX/sexSFX.ogg" id="3_t768s"]
+[ext_resource type="PackedScene" uid="uid://db8otfnkwhfv5" path="res://Prefabs/Particles/sex_particle.tscn" id="2_r1rdd"]
+[ext_resource type="AudioStream" uid="uid://cdpfrcaxqrio2" path="res://Assets/SFX/sexSFX.ogg" id="4_rhcf8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6awlp"]
 size = Vector3(0.500427, 0.490173, 0.517578)
 
 [node name="PowerUp" type="Area3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.263234, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263234, 0)
 script = ExtResource("1_xxqub")
+particlePrefab = ExtResource("2_r1rdd")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-texture_filter = 0
 texture = ExtResource("2_qoa7r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -21,5 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0188904, 0.0311584, 0)
 shape = SubResource("BoxShape3D_6awlp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_t768s")
-volume_db = 9.369
+stream = ExtResource("4_rhcf8")
