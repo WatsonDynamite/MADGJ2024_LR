@@ -57,7 +57,7 @@ func _on_body_entered(body):
 
 func _on_death():
 	if(isBoss):
-		var powerUp = allPowerUps[randi() % 5].instantiate()
+		var powerUp = allPowerUps[randi() % 4].instantiate()
 		powerUp.position = Vector3(global_position.x,1,global_position.z)
 		get_parent().add_child(powerUp)
 	queue_free();

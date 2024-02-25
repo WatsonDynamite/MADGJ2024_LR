@@ -36,7 +36,7 @@ var is_dead = false;
 
 var ammoValue = MAX_AMMO
 var currentBullet = 0
-var health = 4
+var health = 3
 var canBeDamaged = true
 var collided = false
 
@@ -171,4 +171,5 @@ func _raise_speed():
 
 func _raise_health():
 	health +=1
+	hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT))
 	pass
