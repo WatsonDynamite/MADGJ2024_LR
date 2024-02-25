@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ee4binfrmnh1"]
+[gd_scene load_steps=20 format=3 uid="uid://ee4binfrmnh1"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_l3rgn"]
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="1_ro1ea"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dpijle2anfyrx" path="res://Assets/claustromania.png" id="7_2x5ou"]
 [ext_resource type="Texture2D" uid="uid://0n07qf8nno5u" path="res://Assets/start.png" id="8_bkwq0"]
 [ext_resource type="PackedScene" uid="uid://cacbyf18ryw4c" path="res://Prefabs/spike_wall.tscn" id="10_ivr0w"]
+[ext_resource type="Texture2D" uid="uid://bm8xr1m0d6lk1" path="res://Assets/close.png" id="10_mt8re"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxel2"]
 albedo_texture = ExtResource("6_y3nn4")
@@ -103,6 +104,19 @@ offset_right = 195.0
 offset_bottom = 73.584
 texture_normal = ExtResource("8_bkwq0")
 
+[node name="CloseButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.042
+anchor_top = -4.573
+anchor_right = -2.042
+anchor_bottom = -4.573
+offset_left = 5737.64
+offset_top = 4974.84
+offset_right = 5801.64
+offset_bottom = 5038.84
+texture_normal = ExtResource("10_mt8re")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u0xqt")
 camera_attributes = SubResource("CameraAttributesPractical_ul24s")
@@ -165,3 +179,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92463, 0.0753918, -3.11315)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96101, 0.0753918, -3.11315)
 
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Control/CloseButton" to="." method="_on_close_button_pressed"]

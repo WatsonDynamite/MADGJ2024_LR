@@ -3,7 +3,7 @@ extends Node3D
 @onready var pauseUI = $Control
 var pause = false
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene treswae for the first time.	
 func _ready():
 	pass # Replace with function body.
 
@@ -24,3 +24,8 @@ func _process(delta):
 			pause = true
 			pauseUI.show()
 	pass
+
+
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://title_screen.tscn");
+	pass # Replace with function body.
