@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3f3eya0o1v5h"]
+
+[ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_unra0"]
+[ext_resource type="PackedScene" uid="uid://bfk8wn7odknm8" path="res://Prefabs/Particles/zombie_particle.tscn" id="2_nly6b"]
+[ext_resource type="PackedScene" uid="uid://todi41brq8pb" path="res://Assets/zombie.gltf" id="3_vjqj1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5560"]
+size = Vector3(0.479736, 0.730286, 0.313049)
+
+[sub_resource type="Animation" id="Animation_to03p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("zombie:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pk7pi"]
+resource_name = "zombie"
+length = 0.800003
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("zombie:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2, 0.366667, 0.4, 0.566667, 0.6, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.128718, 0, 0), Vector3(0.128718, 0, 0), Vector3(1.28299e-05, 0, 0), Vector3(1.28299e-05, 0, 0), Vector3(-0.204088, 0, 0), Vector3(-0.204088, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2fcm"]
+_data = {
+"RESET": SubResource("Animation_to03p"),
+"zombie": SubResource("Animation_pk7pi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nhewn"]
+animation = &"zombie"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xcadx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kdt3x"]
+states/zombie/node = SubResource("AnimationNodeAnimation_nhewn")
+states/zombie/position = Vector2(372, 76)
+transitions = ["Start", "zombie", SubResource("AnimationNodeStateMachineTransition_xcadx")]
+
+[node name="ZombieBoss" type="Area3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_mask = 2
+script = ExtResource("1_unra0")
+health = 6
+isBoss = true
+death_particle = ExtResource("2_nly6b")
+
+[node name="zombie" parent="." instance=ExtResource("3_vjqj1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373163, 0.150754)
+shape = SubResource("BoxShape3D_h5560")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l2fcm")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l2fcm")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kdt3x")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

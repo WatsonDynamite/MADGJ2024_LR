@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwbyvq2y33c53"]
+
+[ext_resource type="Script" path="res://Scripts/PowerUps/Drugs.gd" id="1_bxgkn"]
+[ext_resource type="Texture2D" uid="uid://d4ftw0xkc446w" path="res://Assets/Drug.png" id="2_6bwmy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6awlp"]
+size = Vector3(0.500427, 0.490173, 0.517578)
+
+[node name="PowerUp" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263234, 0)
+script = ExtResource("1_bxgkn")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_6bwmy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0188904, 0.0311584, 0)
+shape = SubResource("BoxShape3D_6awlp")

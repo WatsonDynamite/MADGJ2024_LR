@@ -1,5 +1,12 @@
 extends Area3D
 
+var rockNroll = preload("res://Prefabs/PowerUps/RockNRoll.tscn")
+var alcohol = preload("res://Prefabs/PowerUps/Alcohol.tscn")
+var sex = preload("res://Prefabs/PowerUps/Sex.tscn")
+var drugs = preload("res://Prefabs/PowerUps/Drugs.tscn")
+
+var allPowerUps: Array
+
 var player: Node3D
 var collided: bool = false
 var attacking: bool = false
@@ -8,6 +15,7 @@ var attackTimer: Timer
 
 @export var health = 1;
 @export var movespeed = 1;
+@export var isBoss = false
 @export var death_particle: PackedScene;
 
 var cur_health = health;
@@ -15,7 +23,10 @@ var cur_health = health;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_tree().root.get_child(0).get_node("Player")
-	attackTimer = get_node("Timer")
+	allPowerUps.append(rockNroll)
+	allPowerUps.append(alcohol)
+	allPowerUps.append(sex)
+	allPowerUps.append(drugs)
 	pass # Replace with function body.
 
 
@@ -45,6 +56,10 @@ func _on_body_entered(body):
 
 
 func _on_death():
+	if(isBoss):
+		var powerUp = allPowerUps[randi() % 5].instantiate()
+		powerUp.position = Vector3(global_position.x,1,global_position.z)
+		get_parent().add_child(powerUp)
 	queue_free();
 	pass;
 

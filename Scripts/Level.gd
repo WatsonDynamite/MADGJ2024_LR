@@ -3,7 +3,7 @@ extends Node3D
 @onready var gridMap: GridMap = $GridMap;
 @onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
 @onready var light: SpotLight3D = $SpotLight3D
-
+@onready var wallSFX: AudioStreamPlayer = $WallSFX
 var crosshair = preload("res://Assets/crosshair.png");
 
 var zombie = preload("res://Prefabs/Zombie.tscn")
@@ -77,6 +77,12 @@ func _decress_curr_size(value: int):
 		light.spot_angle -= lightModifier
 		wall_health = 3
 		_set_wall_to(cur_wall_size);
+		wallSFX.play()
+
+func increase_curr_size():
+	cur_wall_size += 1;
+	_set_wall_to(cur_wall_size);
+	wallSFX.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -95,7 +101,7 @@ func _spawner():
 		randomZ *= -1
 	mob.position = Vector3(randomX,0.5,randomZ)
 	print("spawned a guy")
-	add_child(mob)
+	get_node("Enemies").add_child(mob)
 
 func _on_timer_timeout():
 	_spawner()

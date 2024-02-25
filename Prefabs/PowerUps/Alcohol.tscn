@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqawsdly0a2bb"]
+
+[ext_resource type="Script" path="res://Scripts/PowerUps/Alcohol.gd" id="1_p6xsq"]
+[ext_resource type="Texture2D" uid="uid://lo2roacwd0bo" path="res://Assets/alcohol.png" id="2_lrl2i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6awlp"]
+size = Vector3(0.500427, 0.490173, 0.517578)
+
+[node name="PowerUp" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263234, 0)
+script = ExtResource("1_p6xsq")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_lrl2i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0188904, 0.0311584, 0)
+shape = SubResource("BoxShape3D_6awlp")
