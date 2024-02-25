@@ -1,5 +1,6 @@
 extends Area3D
 
+@onready var audio = $AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,5 +13,6 @@ func _process(delta):
 
 func _powerUp():
 	get_parent().increase_curr_size()
+	audio.play()
 	pass
 	

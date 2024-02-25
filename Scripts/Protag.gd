@@ -156,7 +156,7 @@ func _on_area_3d_area_entered(area):
 	else:
 		print("unleash")
 		area._powerUp()
-		area.queue_free()
+		area.position.y = -10
 	pass # Replace with function body.
 
 
