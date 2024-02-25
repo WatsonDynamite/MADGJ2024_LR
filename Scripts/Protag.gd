@@ -152,7 +152,8 @@ func _on_damage_timer_timeout():
 
 func _on_area_3d_area_entered(area):
 	if area.name != "PowerUp":
-		collided = true
+		if area.name != "Bullet":
+			collided = true
 	else:
 		area._emit_particle(position)
 		area._powerUp()
