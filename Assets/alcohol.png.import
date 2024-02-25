@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lo2roacwd0bo"
-path.s3tc="res://.godot/imported/alcohol.png-e52cdf9ffcc7d78641bcad53c771fb10.s3tc.ctex"
+path="res://.godot/imported/alcohol.png-e52cdf9ffcc7d78641bcad53c771fb10.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/alcohol.png"
-dest_files=["res://.godot/imported/alcohol.png-e52cdf9ffcc7d78641bcad53c771fb10.s3tc.ctex"]
+dest_files=["res://.godot/imported/alcohol.png-e52cdf9ffcc7d78641bcad53c771fb10.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
