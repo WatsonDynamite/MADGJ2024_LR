@@ -2,7 +2,8 @@ extends Node3D
 
 @onready var gridMap: GridMap = $GridMap;
 @onready var warningLevel: TextureProgressBar = $Container/WarningLevel;
-
+@onready var light: SpotLight3D = $SpotLight3D
+@onready var wallSFX: AudioStreamPlayer = $WallSFX
 var crosshair = preload("res://Assets/crosshair.png");
 
 var zombie = preload("res://Prefabs/Zombie.tscn")
@@ -22,6 +23,7 @@ const INITIAL_WALL_SIZE = 17;
 
 var cur_wall_size = INITIAL_WALL_SIZE;
 var wall_health = 3;
+var lightModifier = 45 / INITIAL_WALL_SIZE;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(crosshair, Input.CURSOR_ARROW, Vector2(16.5, 16.5));
@@ -42,9 +44,11 @@ func _ready():
 func _input(event):
 	if(event.is_action_pressed("debug_increase_wall")):
 		cur_wall_size += 2;
+		light.spot_angle += lightModifier
 		_set_wall_to(cur_wall_size);
 	if(event.is_action_pressed("debug_decrease_wall")):
 		cur_wall_size -= 2;
+		light.spot_angle -= lightModifier
 		_set_wall_to(cur_wall_size);
 	
 # Creates a wall around the center of the level with a size of factor x factor
@@ -70,8 +74,15 @@ func _decress_curr_size(value: int):
 	wall_health -=1
 	if wall_health == 0:
 		cur_wall_size -= value;
+		light.spot_angle -= lightModifier
 		wall_health = 3
 		_set_wall_to(cur_wall_size);
+		wallSFX.play()
+
+func increase_curr_size():
+	cur_wall_size += 1;
+	_set_wall_to(cur_wall_size);
+	wallSFX.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -90,7 +101,7 @@ func _spawner():
 		randomZ *= -1
 	mob.position = Vector3(randomX,0.5,randomZ)
 	print("spawned a guy")
-	add_child(mob)
+	get_node("Enemies").add_child(mob)
 
 func _on_timer_timeout():
 	_spawner()
@@ -99,3 +110,4 @@ func _on_timer_timeout():
 func _on_new_wave(wave: int):
 	spawn_timer.start(spawn_freq_time - (wave * spawn_freq_mod));
 	
+

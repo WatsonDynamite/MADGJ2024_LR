@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://48fpcgwwhyj5"]
+
+[ext_resource type="PackedScene" uid="uid://b2g4hisul2jer" path="res://Prefabs/Level.tscn" id="1_5v0i7"]
+[ext_resource type="Script" path="res://Scripts/Pause.gd" id="1_iw5ng"]
+[ext_resource type="PackedScene" uid="uid://tkyb0o8pomyh" path="res://Prefabs/player.tscn" id="2_3rn8t"]
+[ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="5_cpx83"]
+[ext_resource type="PackedScene" uid="uid://b1siuuxneokkc" path="res://Prefabs/bullet.tscn" id="6_lcnlk"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_iw5ng")
+
+[node name="Level" parent="." instance=ExtResource("1_5v0i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52246, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_3rn8t")]
+
+[node name="Bullets" type="Node3D" parent="."]
+
+[node name="Bullet" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet2" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet3" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet4" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet5" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet6" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet7" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet8" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet9" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet10" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet11" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet12" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet13" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet14" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet15" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet16" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet17" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet18" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet19" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Bullet20" parent="Bullets" instance=ExtResource("6_lcnlk")]
+visible = false
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.121
+anchor_right = 0.5
+anchor_bottom = 0.121
+offset_left = -948.0
+offset_top = -130.68
+offset_right = 960.0
+offset_bottom = 957.32
+grow_horizontal = 2
+
+[node name="PAUSE" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 123.0
+offset_right = 113.0
+offset_bottom = 167.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_cpx83")
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1

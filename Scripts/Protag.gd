@@ -21,9 +21,11 @@ var deathScreen: PackedScene = preload("res://Prefabs/death_screen.tscn");
 @onready var outOfAmmoLabel: Label3D = $OutOfAmmoLabel
 
 @onready var reloadTimer: Timer = $ReloadTimer
-@onready var contactDamageTimer: Timer = $ContactDamageTimer
 @onready var damageTimer: Timer = $DamageTimer
 @onready var animationTree: AnimationTree = $Model/Body/AnimationTree
+
+@onready var reload: AudioStreamPlayer = $Reload
+@onready var gunfire: AudioStreamPlayer = $Gunfire
 
 
 var gunDirection: Node3D
@@ -34,7 +36,7 @@ var is_dead = false;
 
 var ammoValue = MAX_AMMO
 var currentBullet = 0
-var health = 3
+var health = 4
 var canBeDamaged = true
 var collided = false
 
@@ -68,10 +70,13 @@ func get_input(delta):
 			currentBullet = 0
 		if(ammoValue == 0):
 			outOfAmmoLabel.visible = true;
+		gunfire.play()
 	if Input.is_action_just_pressed("reload"):
+		ammoValue = 0
 		outOfAmmoLabel.visible = false;
 		reloadingLabel.visible = true;
 		reloadTimer.start();
+		reload.play();
 	ammoMeter.set_size(Vector2(AMMO_SPRITE_WIDTH * ammoValue, AMMO_SPRITE_HEIGHT));
 	
 # Called when the node enters the scene tree for the first time.
@@ -146,10 +151,25 @@ func _on_damage_timer_timeout():
 
 
 func _on_area_3d_area_entered(area):
-	collided = true
+	if area.name != "PowerUp":
+		collided = true
+	else:
+		print("unleash")
+		area._powerUp()
+		area.position.y = -10
 	pass # Replace with function body.
 
 
 func _on_area_3d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	collided = false
 	pass # Replace with function body.
+
+
+func _raise_speed():
+	speed += 1
+	pass
+
+func _raise_health():
+	health +=1
+	hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT))
+	pass

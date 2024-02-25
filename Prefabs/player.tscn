@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://tkyb0o8pomyh"]
+[gd_scene load_steps=21 format=3 uid="uid://tkyb0o8pomyh"]
 
 [ext_resource type="Script" path="res://Scripts/Protag.gd" id="1_slckp"]
 [ext_resource type="PackedScene" uid="uid://dfp8njn67myfk" path="res://Assets/protag_body.gltf" id="2_nsktf"]
 [ext_resource type="PackedScene" uid="uid://duby7nxbyv4ks" path="res://Assets/protag_head.gltf" id="3_8ru7w"]
-[ext_resource type="PackedScene" uid="uid://be4kmb5bfogrs" path="res://Prefabs/hp_meter.tscn" id="4_638ol"]
-[ext_resource type="PackedScene" uid="uid://c40q02tgw3q80" path="res://Prefabs/ammo_meter.tscn" id="4_lk01j"]
+[ext_resource type="PackedScene" path="res://Prefabs/hp_meter.tscn" id="4_638ol"]
+[ext_resource type="PackedScene" path="res://Prefabs/ammo_meter.tscn" id="4_lk01j"]
 [ext_resource type="FontFile" uid="uid://bxswg3uhgyyxt" path="res://Assets/yoster.ttf" id="6_50080"]
+[ext_resource type="AudioStream" uid="uid://b3vp4gynovsd7" path="res://Assets/SFX/reload.ogg" id="7_dthpx"]
+[ext_resource type="AudioStream" uid="uid://t0jy8q4lqlgm" path="res://Assets/SFX/gunfire.ogg" id="8_scvtq"]
 
 [sub_resource type="Animation" id="Animation_nkqwy"]
 resource_name = "Idle"
@@ -168,6 +170,14 @@ one_shot = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0600586, 0.400055, 0.0953064)
 shape = SubResource("BoxShape3D_0busp")
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dthpx")
+
+[node name="Gunfire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_scvtq")
+volume_db = -2.0
+pitch_scale = 1.4
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

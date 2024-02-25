@@ -9,6 +9,8 @@ var score = 0;
 @onready var waveLabel = $Wave;
 @onready var waveTimer = $Wave/WaveTimer
 
+var boss = preload("res://Prefabs/ZombieBoss.tscn")
+
 var wave_counter = 1;
 
 # Called when the node enters the scene tree for the first time.
@@ -39,5 +41,16 @@ func _format_seconds(time : float):
 
 
 func _start_wave(wave: int):
-	waveTimer.start(wave * 60);
+	waveTimer.start(wave * 60)
+	if wave % 3 == 0:
+		var newBoss = boss.instantiate()
+		newBoss.position = Vector3(0,0.5,10)
+		get_parent().add_child.call_deferred(newBoss);
+		print(newBoss)
 	
+
+
+func _on_wave_timer_timeout():
+	wave_counter += 1;
+	_start_wave(wave_counter)
+	pass # Replace with function body.

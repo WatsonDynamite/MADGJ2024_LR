@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6m2g1tdt3gu3"]
+[gd_scene load_steps=11 format=3 uid="uid://b6m2g1tdt3gu3"]
 
 [ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_4xxfd"]
 [ext_resource type="PackedScene" uid="uid://bcr8ovsmvj1mt" path="res://Assets/slime.gltf" id="1_sxuul"]
