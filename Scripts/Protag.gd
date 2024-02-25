@@ -36,7 +36,7 @@ var is_dead = false;
 
 var ammoValue = MAX_AMMO
 var currentBullet = 0
-var health = 3
+var health = 4
 var canBeDamaged = true
 var collided = false
 
