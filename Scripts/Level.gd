@@ -11,6 +11,8 @@ var skeleton = preload("res://Prefabs/skeleton.tscn")
 var slime = preload("res://Prefabs/slime.tscn")
 var wallParticle = preload("res://Prefabs/Particles/wall_particle.tscn")
 
+var alcohol = preload("res://Prefabs/PowerUps/Alcohol.tscn");
+
 var mobs: Array
 var spawn_freq_mod: int = 0.5;
 var spawn_freq_time: int = 2;
@@ -44,13 +46,28 @@ func _ready():
 # make sure factor is always an odd number (?)
 func _set_wall_to(factor: int):
 	var prevWalls = gridMap.get_used_cells_by_item(Tiles.WALL);
+	var offset = factor /2 ;
+	
+	var player = get_parent().find_child("Player");
+	var playerPos = player.global_position;
+	var newPlayerX = playerPos.x;
+	var newPlayerZ = playerPos.z;
+	
+
+	if(abs(playerPos.x) >= floor(offset - 1)):
+		newPlayerX = playerPos.x - 1 * sign(playerPos.x);
+	
+	if(abs(playerPos.z) >= floor(offset - 1)):
+		newPlayerZ = playerPos.z - 1 * sign(playerPos.z);
+	player.global_position = Vector3(newPlayerX, playerPos.y, newPlayerZ);
+	
+		
 	
 	for i in prevWalls:
 		var particle = wallParticle.instantiate();
 		particle.position = i;
 		get_parent().add_child(particle);
 		gridMap.set_cell_item(i, -1);
-	var offset = factor /2 ;
 	for i in range(1, factor -1 ):
 		gridMap.set_cell_item(Vector3(i - offset, 1, -offset), Tiles.WALL);
 		gridMap.set_cell_item(Vector3(i - offset, 1, offset), Tiles.WALL, 10);
@@ -61,7 +78,7 @@ func _set_wall_to(factor: int):
 	
 func _decress_curr_size(value: int):
 	wall_health -=1
-	if wall_health == 0:
+	if wall_health == 0 && cur_wall_size > 5:
 		cur_wall_size -= value;
 		light.spot_angle -= lightModifier
 		wall_health = 3
@@ -89,7 +106,6 @@ func _spawner():
 	if randi() % 2 == 0:
 		randomZ *= -1
 	mob.position = Vector3(randomX,0.5,randomZ)
-	print("spawned a guy")
 	get_node("Enemies").add_child(mob)
 
 func _on_timer_timeout():
@@ -97,6 +113,12 @@ func _on_timer_timeout():
 	pass # Replace with function body.
 
 func _on_new_wave(wave: int):
+	if wave > 1:
+		var playerPos = get_parent().find_child("Player").global_position;
+		var alcoholInstance = alcohol.instantiate();
+		alcoholInstance.position = Vector3(playerPos.x, 1, playerPos.z);
+		add_child(alcoholInstance);
+		
 	spawn_timer.start(spawn_freq_time - (wave * spawn_freq_mod));
 	
 

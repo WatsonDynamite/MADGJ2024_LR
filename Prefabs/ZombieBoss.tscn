@@ -61,7 +61,7 @@ transitions = ["Start", "zombie", SubResource("AnimationNodeStateMachineTransiti
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_mask = 2
 script = ExtResource("1_unra0")
-health = 6
+health = 14
 isBoss = true
 death_particle = ExtResource("2_nly6b")
 

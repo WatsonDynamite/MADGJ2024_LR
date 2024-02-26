@@ -5,7 +5,6 @@ var score = 0;
 @onready var survivalLabel = $Score
 @onready var survivalTimer = $Score/SurvivalTimer;
 
-
 @onready var waveLabel = $Wave;
 @onready var waveTimer = $Wave/WaveTimer
 
@@ -45,9 +44,9 @@ func _start_wave(wave: int):
 	if wave % 3 == 0:
 		var newBoss = boss.instantiate()
 		newBoss.position = Vector3(0,0.5,10)
+		get_parent()._on_new_wave(wave);
 		get_parent().add_child.call_deferred(newBoss);
 		print(newBoss)
-	
 
 
 func _on_wave_timer_timeout():

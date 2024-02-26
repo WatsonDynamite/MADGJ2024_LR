@@ -14,6 +14,7 @@ func _process(delta):
 	pass
 
 func _powerUp():
+	print("booze")
 	get_parent().increase_curr_size()
 	audio.play()
 	pass
