@@ -67,16 +67,6 @@ func get_input(delta):
 	var angle: float = -Vector2.UP.angle_to(mouse_position - center)
 	model.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
 	
-	if(Input.is_action_just_pressed("debug_sex")):
-		var sexInst = sex.instantiate();
-		sexInst.position = Vector3(global_position.x + 2,0.2,global_position.z + 2)
-		get_parent().add_child(sexInst)
-		
-	if(Input.is_action_just_pressed("debug_alcohol")):
-		var beerInst = alcohol.instantiate();
-		beerInst.position = Vector3(global_position.x + 2,0.2,global_position.z + 2)
-		get_parent().add_child(beerInst)
-		
 	if Input.is_action_just_pressed("shoot") && ammoValue > 0:
 		ammo[currentBullet].set_process_mode(PROCESS_MODE_ALWAYS)
 		ammo[currentBullet].show()
