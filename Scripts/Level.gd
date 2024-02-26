@@ -46,7 +46,7 @@ func _ready():
 # make sure factor is always an odd number (?)
 func _set_wall_to(factor: int):
 	var prevWalls = gridMap.get_used_cells_by_item(Tiles.WALL);
-	var offset = factor /2 ;
+	var offset = factor / 2 ;
 	
 	var player = get_parent().find_child("Player");
 	var playerPos = player.global_position;
@@ -54,11 +54,11 @@ func _set_wall_to(factor: int):
 	var newPlayerZ = playerPos.z;
 	
 
-	if(abs(playerPos.x) >= floor(offset - 1)):
-		newPlayerX = playerPos.x - 1 * sign(playerPos.x);
+	if(abs(playerPos.x) >= floor(offset - 2)):
+		newPlayerX = playerPos.x - 2 * sign(playerPos.x);
 	
-	if(abs(playerPos.z) >= floor(offset - 1)):
-		newPlayerZ = playerPos.z - 1 * sign(playerPos.z);
+	if(abs(playerPos.z) >= floor(offset - 2)):
+		newPlayerZ = playerPos.z - 2 * sign(playerPos.z);
 	player.global_position = Vector3(newPlayerX, playerPos.y, newPlayerZ);
 	
 		
@@ -86,7 +86,7 @@ func _decress_curr_size(value: int):
 		wallSFX.play()
 
 func increase_curr_size():
-	cur_wall_size += 1;
+	cur_wall_size += 2;
 	_set_wall_to(cur_wall_size);
 	wallSFX.play()
 

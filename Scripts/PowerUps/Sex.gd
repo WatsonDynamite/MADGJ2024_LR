@@ -12,7 +12,7 @@ func _process(delta):
 	pass
 
 func _powerUp():
-	get_parent().get_parent().get_node("Player")._raise_health()
+	get_tree().current_scene.get_node("Player")._raise_health()
 	audio.play()
 	
 func _emit_particle(position: Vector3):

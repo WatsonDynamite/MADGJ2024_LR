@@ -9,6 +9,8 @@ func _ready():
 	set_process_mode(PROCESS_MODE_DISABLED)
 	pass # Replace with function body.
 
+func _is_bullet():
+	return true;
 
 func _physics_process(delta):
 	translate(-Vector3.FORWARD * speed)

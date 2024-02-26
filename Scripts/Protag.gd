@@ -2,6 +2,13 @@ extends CharacterBody3D
 
 const MAX_AMMO = 10;
 
+
+
+var rockNroll = preload("res://Prefabs/PowerUps/RockNRoll.tscn")
+var alcohol = preload("res://Prefabs/PowerUps/Alcohol.tscn")
+var sex = preload("res://Prefabs/PowerUps/Sex.tscn")
+var drugs = preload("res://Prefabs/PowerUps/Drugs.tscn")
+
 const AMMO_SPRITE_WIDTH = 16;
 const AMMO_SPRITE_HEIGHT = 65;
 const HP_SPRITE_WIDTH = 77;
@@ -60,6 +67,16 @@ func get_input(delta):
 	var angle: float = -Vector2.UP.angle_to(mouse_position - center)
 	model.rotation = Vector3(model.rotation.x,lerp_angle(model.rotation.y, angle, delta * 100), model.rotation.z)
 	
+	if(Input.is_action_just_pressed("debug_sex")):
+		var sexInst = sex.instantiate();
+		sexInst.position = Vector3(global_position.x + 2,0.2,global_position.z + 2)
+		get_parent().add_child(sexInst)
+		
+	if(Input.is_action_just_pressed("debug_alcohol")):
+		var beerInst = alcohol.instantiate();
+		beerInst.position = Vector3(global_position.x + 2,0.2,global_position.z + 2)
+		get_parent().add_child(beerInst)
+		
 	if Input.is_action_just_pressed("shoot") && ammoValue > 0:
 		ammo[currentBullet].set_process_mode(PROCESS_MODE_ALWAYS)
 		ammo[currentBullet].show()
@@ -151,8 +168,8 @@ func _on_damage_timer_timeout():
 
 
 func _on_area_3d_area_entered(area):
-	if area.name != "PowerUp":
-		if area.name != "Bullet":
+	if !area.has_method("_powerUp"):
+		if !area.has_method("is_bullet"):
 			collided = true
 	else:
 		area._emit_particle(position)
@@ -171,6 +188,6 @@ func _raise_speed():
 	pass
 
 func _raise_health():
-	health +=1
+	health += 1
 	hpMeter.set_size(Vector2(HP_SPRITE_WIDTH * health, HP_SPRITE_HEIGHT))
 	pass
